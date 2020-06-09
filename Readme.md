@@ -1,7 +1,7 @@
 # Личный проект «Что посмотреть» [![Build status][travis-image]][travis-url]
 
 * Студент: [Никита Литвиненко](https://up.htmlacademy.ru/react/4/user/137060).
-* Наставник: `Неизвестно`.
+* Наставник: [Евгений Титков](https://htmlacademy.ru/profile/id1274759).
 
 ---
 
