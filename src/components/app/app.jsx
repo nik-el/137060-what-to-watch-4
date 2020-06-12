@@ -1,11 +1,8 @@
 import React from 'react';
-import Main from '../main/main';
+import {Main} from '../main/main';
 
-// eslint-disable-next-line react/prop-types
-const App = ({promoItem}) => {
+export const App = (props) => {
   return <Main
-    {...promoItem}
+    {...props}
   />;
 };
-
-export default App;
