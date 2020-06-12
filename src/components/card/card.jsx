@@ -14,5 +14,5 @@ export const Card = React.memo(function Card({name}) {
 
 Card.propTypes = {
   // заголовок карточки
-  name: PropTypes.arrayOf(PropTypes.string).isRequired,
+  name: PropTypes.string.isRequired,
 };
