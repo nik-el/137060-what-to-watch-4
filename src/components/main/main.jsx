@@ -1,18 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Card} from '../card/card';
 
-const Main = ({feedItems, promoItem}) => {
+export const Main = ({feedItems, promoItem}) => {
   const {title, genre, year} = promoItem;
-
-  const mainCardEl = (name) =>
-    <article className="small-movie-card catalog__movies-card" key={name}>
-      <div className="small-movie-card__image">
-        <img src="img/no-country-for-old-men.jpg" alt="No Country for Old Men" width="280" height="175"/>
-      </div>
-      <h3 className="small-movie-card__title">
-        <a className="small-movie-card__link" href="movie-page.html">{name}</a>
-      </h3>
-    </article>;
 
   return <>
     <section className="movie-card">
@@ -113,7 +104,14 @@ const Main = ({feedItems, promoItem}) => {
         </ul>
 
         <div className="catalog__movies-list">
-          { feedItems.map((name)=> mainCardEl(name)) }
+          {feedItems.map((name)=>
+            (
+              <Card
+                name={name}
+                key={name}
+              />
+            )
+          )}
         </div>
 
         <div className="catalog__more">
@@ -151,5 +149,3 @@ Main.propTypes = {
     year: PropTypes.number.isRequired,
   }).isRequired,
 };
-
-export default Main;
