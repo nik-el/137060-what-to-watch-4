@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Card} from '../card/card';
 
-export const Main = ({feedItems, promoItem}) => {
+export const Main = ({feedItems, promoItem, onCardTitleClick}) => {
   const {title, genre, year} = promoItem;
 
   return <>
@@ -40,7 +40,9 @@ export const Main = ({feedItems, promoItem}) => {
           </div>
 
           <div className="movie-card__desc">
-            <h2 className="movie-card__title">{title}</h2>
+            <h2 className="movie-card__title">
+              {title}
+            </h2>
             <p className="movie-card__meta">
               <span className="movie-card__genre">{genre}</span>
               <span className="movie-card__year">{year}</span>
@@ -49,7 +51,6 @@ export const Main = ({feedItems, promoItem}) => {
             <div className="movie-card__buttons">
               <button className="btn btn--play movie-card__button" type="button">
                 <svg viewBox="0 0 19 19" width="19" height="19">
-                  {/* Fixme потерялась иконка */}
                   <use xlinkHref="#play-s"></use>
                 </svg>
                 <span>Play</span>
@@ -104,11 +105,12 @@ export const Main = ({feedItems, promoItem}) => {
         </ul>
 
         <div className="catalog__movies-list">
-          {feedItems.map((name)=>
+          {feedItems.map((itemTitle)=>
             (
               <Card
-                name={name}
-                key={name}
+                title={itemTitle}
+                key={itemTitle}
+                onCardTitleClick={onCardTitleClick}
               />
             )
           )}
@@ -148,4 +150,6 @@ Main.propTypes = {
     // год выпуска промо документа
     year: PropTypes.number.isRequired,
   }).isRequired,
+  // обработчик клика по заголовку карточки
+  onCardTitleClick: PropTypes.func.isRequired,
 };
