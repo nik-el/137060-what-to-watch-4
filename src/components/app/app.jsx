@@ -1,11 +1,11 @@
 import React from 'react';
 import {Main} from '../main/main';
 
-const onPromoHandler = () => {};
+const onCardTitleHandler = () => {};
 
 export const App = (props) => {
   return <Main
-    onPromoClick={onPromoHandler}
+    onCardTitleClick={onCardTitleHandler}
     {...props}
   />;
 };

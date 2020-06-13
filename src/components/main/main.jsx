@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Card} from '../card/card';
 
-export const Main = ({feedItems, promoItem, onPromoClick}) => {
+export const Main = ({feedItems, promoItem, onCardTitleClick}) => {
   const {title, genre, year} = promoItem;
 
   return <>
@@ -40,10 +40,7 @@ export const Main = ({feedItems, promoItem, onPromoClick}) => {
           </div>
 
           <div className="movie-card__desc">
-            <h2
-              className="movie-card__title"
-              onClick={onPromoClick}
-            >
+            <h2 className="movie-card__title">
               {title}
             </h2>
             <p className="movie-card__meta">
@@ -108,11 +105,12 @@ export const Main = ({feedItems, promoItem, onPromoClick}) => {
         </ul>
 
         <div className="catalog__movies-list">
-          {feedItems.map((name)=>
+          {feedItems.map((itemTitle)=>
             (
               <Card
-                name={name}
-                key={name}
+                title={itemTitle}
+                key={itemTitle}
+                onCardTitleClick={onCardTitleClick}
               />
             )
           )}
@@ -152,6 +150,6 @@ Main.propTypes = {
     // год выпуска промо документа
     year: PropTypes.number.isRequired,
   }).isRequired,
-  // обработчик клика на промо
-  onPromoClick: PropTypes.func.isRequired,
+  // обработчик клика по заголовку карточки
+  onCardTitleClick: PropTypes.func.isRequired,
 };

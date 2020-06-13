@@ -10,11 +10,7 @@ const data = {
   },
   feedItems: [
     `Fantastic Beasts`,
-    `Bohemian Rhapsody`,
-    `Macbeth`,
-    `Terminator`,
-    `Terminator 2`,
-    `Terminator 3`
+    `Bohemian Rhapsody`
   ]
 };
 
