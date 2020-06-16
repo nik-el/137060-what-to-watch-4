@@ -1,10 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const Card = React.memo(function Card({title, onCardTitleClick}) {
-  return <article className="small-movie-card catalog__movies-card">
+export const Card = React.memo(function Card({title, thumbnail, onCardTitleClick, onCardMouseOver}) {
+  return <article
+    onMouseOver={onCardMouseOver}
+    className="small-movie-card catalog__movies-card"
+  >
     <div className="small-movie-card__image">
-      <img src="img/no-country-for-old-men.jpg" alt="No Country for Old Men" width="280" height="175"/>
+      <img src={thumbnail} alt={title} width="280" height="175"/>
     </div>
     <h3
       className="small-movie-card__title"
@@ -18,6 +21,10 @@ export const Card = React.memo(function Card({title, onCardTitleClick}) {
 Card.propTypes = {
   // заголовок карточки
   title: PropTypes.string.isRequired,
+  // ссылка на изображение
+  thumbnail: PropTypes.string.isRequired,
   // обработчик клика по заголовку карточки
-  onCardTitleClick: PropTypes.func.isRequired,
+  onCardTitleClick: PropTypes.func,
+  // обработчик ховера на карточку
+  onCardMouseOver: PropTypes.func,
 };
