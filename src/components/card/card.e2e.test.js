@@ -7,19 +7,40 @@ Enzyme.configure({
   adapter: new Adapter()
 });
 
-const title = `Test title`;
+const testCard = {
+  id: `1`,
+  title: `Title`,
+  thumbnail: `https://picsum.photos`,
+};
 
 it(`Should Card title be clicked`, () => {
   const onCardTitleClick = jest.fn();
 
-  const main = shallow(
+  const card = shallow(
       <Card
+        title={testCard.title}
+        thumbnail={testCard.thumbnail}
         onCardTitleClick={onCardTitleClick}
-        title={title}
       />
   );
 
-  const cardTitle = main.find(`.small-movie-card__title`);
+  const cardTitle = card.find(`.small-movie-card__title`);
   cardTitle.props().onClick();
   expect(onCardTitleClick.mock.calls.length).toBe(1);
+});
+
+it(`Should Card be hovered with correct args`, () => {
+  const onCardMouseOver = jest.fn((...args) => [...args]);
+
+  const card = shallow(
+      <Card
+        title={testCard.title}
+        thumbnail={testCard.thumbnail}
+        onCardMouseOver={onCardMouseOver}
+      />
+  );
+
+  const cardBlock = card.find(`.small-movie-card`);
+  cardBlock.props().onMouseOver(testCard);
+  expect(onCardMouseOver.mock.calls[0][0]).toMatchObject(testCard);
 });

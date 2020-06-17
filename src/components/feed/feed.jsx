@@ -1,17 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Card} from '../card/card';
+import {FilmPropTypes} from "../../types/film-prop-types";
 
 export class Feed extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      activeCardIndex: null
+      activeCard: null
     };
 
     this.handleCardHover = (index) => {
       this.setState({
-        activeCardIndex: index
+        activeCard: index
       });
     };
   }
@@ -21,13 +22,13 @@ export class Feed extends React.PureComponent {
 
     return (
       <div className={className}>
-        { films.map((item, index) =>
+        { films.map((item) =>
           (
             <Card
               title={item.title}
               thumbnail={item.thumbnail}
               key={item.id}
-              onCardMouseOver={() => this.handleCardHover(index)}
+              onCardMouseOver={() => this.handleCardHover(item)}
               onCardTitleClick={onCardTitleClick}
             />
           )
@@ -38,14 +39,8 @@ export class Feed extends React.PureComponent {
 }
 
 Feed.propTypes = {
-  films: PropTypes.arrayOf(PropTypes.shape({
-    // заголовок карточки
-    title: PropTypes.string.isRequired,
-    // ссылка на изображение
-    thumbnail: PropTypes.string.isRequired,
-    // уникальный id
-    id: PropTypes.string.isRequired
-  })),
+  // массив данных с фильмами
+  films: PropTypes.arrayOf(PropTypes.shape(FilmPropTypes)),
   // обработчик клика по заголовку карточки
   onCardTitleClick: PropTypes.func.isRequired,
   className: PropTypes.string

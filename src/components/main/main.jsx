@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Feed} from '../feed/feed';
 
+import {FilmPropTypes} from '../../types/film-prop-types';
+
 export const Main = ({promoItem, onCardTitleClick, films}) => {
   const {title, genre, year} = promoItem;
 
@@ -133,6 +135,8 @@ export const Main = ({promoItem, onCardTitleClick, films}) => {
 };
 
 Main.propTypes = {
+  // массив данных с фильмами
+  films: PropTypes.arrayOf(PropTypes.shape(FilmPropTypes)),
   // промо документ
   promoItem: PropTypes.shape({
     // имя промо документа в промо

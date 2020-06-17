@@ -1,16 +1,8 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {Main} from './main';
+import {Feed} from './feed';
 
 const onCardTitleClick = () => {};
-
-const testData = {
-  promoItem: {
-    title: `Test title`,
-    year: 2000,
-    genre: `test genre`
-  }
-};
 
 const testFilms = [
   {
@@ -25,10 +17,9 @@ const testFilms = [
   },
 ];
 
-it(`Main renders correctly`, () => {
+it(`Feed renders correctly`, () => {
   const tree = renderer
-    .create(<Main
-      {...testData}
+    .create(<Feed
       films={testFilms}
       onCardTitleClick={onCardTitleClick}
     />)
