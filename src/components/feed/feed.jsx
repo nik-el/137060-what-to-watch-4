@@ -22,14 +22,13 @@ export class Feed extends React.PureComponent {
 
     return (
       <div className={className}>
-        { films.map((item) =>
+        { films.map((film) =>
           (
             <Card
-              title={item.title}
-              thumbnail={item.thumbnail}
-              key={item.id}
-              onCardMouseOver={() => this.handleCardHover(item)}
+              onCardMouseOver={this.handleCardHover}
               onCardTitleClick={onCardTitleClick}
+              key={film.id}
+              film={film}
             />
           )
         )}
