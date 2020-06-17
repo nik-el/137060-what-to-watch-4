@@ -22,7 +22,7 @@ export const Card = React.memo(function Card({film, onCardTitleClick, onCardMous
 });
 
 Card.propTypes = {
-  // данные фильмы
+  // данные фильма
   film: PropTypes.shape(FilmPropTypes),
   // обработчик клика по заголовку карточки
   onCardTitleClick: PropTypes.func,
