@@ -3,15 +3,15 @@
 exports[`Card renders correctly 1`] = `
 <article
   className="small-movie-card catalog__movies-card"
-  onMouseOver={[Function]}
+  onMouseEnter={[Function]}
 >
   <div
     className="small-movie-card__image"
   >
     <img
-      alt="Title"
+      alt="Test title"
       height="175"
-      src="https://picsum.photos"
+      src="https://picsum.photos/id/0"
       width="280"
     />
   </div>
@@ -23,7 +23,7 @@ exports[`Card renders correctly 1`] = `
       className="small-movie-card__link"
       href="#"
     >
-      Title
+      Test title
     </a>
   </h3>
 </article>

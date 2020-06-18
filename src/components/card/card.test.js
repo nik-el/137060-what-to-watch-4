@@ -2,21 +2,17 @@ import React from 'react';
 import renderer from 'react-test-renderer';
 import {Card} from './card';
 
-const testFilm = {
-  title: `Title`,
-  thumbnail: `https://picsum.photos`,
-  id: `test id`
-};
+import {testFilm} from '../../utils/test.utils';
 
 const onCardTitleClick = () => {};
-const onCardMouseOver = () => {};
+const onCardMouseEnter = () => {};
 
 it(`Card renders correctly`, () => {
   const tree = renderer
     .create(<Card
       film={testFilm}
       onCardTitleClick={onCardTitleClick}
-      onCardMouseOver={onCardMouseOver}
+      onCardMouseEnter={onCardMouseEnter}
     />)
     .toJSON();
   expect(tree).toMatchSnapshot();

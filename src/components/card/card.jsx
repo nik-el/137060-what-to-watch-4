@@ -2,11 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {FilmPropTypes} from "../../types/film-prop-types";
 
-export const Card = React.memo(function Card({film, onCardTitleClick, onCardMouseOver}) {
+export const Card = React.memo(function Card({film, onCardTitleClick, onCardMouseEnter}) {
   const {title, thumbnail} = film;
 
   return <article
-    onMouseOver={() => onCardMouseOver(film)}
+    onMouseEnter={() => onCardMouseEnter(film)}
     className="small-movie-card catalog__movies-card"
   >
     <div className="small-movie-card__image">
@@ -27,5 +27,5 @@ Card.propTypes = {
   // обработчик клика по заголовку карточки
   onCardTitleClick: PropTypes.func,
   // обработчик ховера на карточку
-  onCardMouseOver: PropTypes.func,
+  onCardMouseEnter: PropTypes.func,
 };

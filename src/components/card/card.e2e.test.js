@@ -3,15 +3,11 @@ import Enzyme, {shallow} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import {Card} from './card';
 
+import {testFilm} from '../../utils/test.utils';
+
 Enzyme.configure({
   adapter: new Adapter()
 });
-
-const testFilm = {
-  id: `1`,
-  title: `Title`,
-  thumbnail: `https://picsum.photos`,
-};
 
 describe(`Card`, () => {
   it(`Should Card title be clicked`, () => {
@@ -30,17 +26,17 @@ describe(`Card`, () => {
   });
 
   it(`Should Card be hovered with correct args`, () => {
-    const onCardMouseOver = jest.fn();
+    const onCardMouseEnter = jest.fn();
 
     const card = shallow(
         <Card
           film={testFilm}
-          onCardMouseOver={onCardMouseOver}
+          onCardMouseEnter={onCardMouseEnter}
         />
     );
 
     const cardBlock = card.find(`.small-movie-card`);
-    cardBlock.simulate(`mouseover`);
-    expect(onCardMouseOver.mock.calls[0][0]).toMatchObject(testFilm);
+    cardBlock.simulate(`mouseenter`);
+    expect(onCardMouseEnter.mock.calls[0][0]).toMatchObject(testFilm);
   });
 });

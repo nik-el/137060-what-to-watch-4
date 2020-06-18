@@ -1,41 +1,31 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {Card} from '../card/card';
 import {FilmPropTypes} from "../../types/film-prop-types";
 
-export class Feed extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeCard: null
-    };
+export const Feed = React.memo(function Feed({films, onCardTitleClick, className}) {
+  const [activeCard, setActiveCard] = useState(null);
 
-    this.handleCardHover = (index) => {
-      this.setState({
-        activeCard: index
-      });
-    };
-  }
+  const handleCardMouseEnter = (card) => {
+    setActiveCard(card);
+  };
 
-  render() {
-    const {films, onCardTitleClick, className} = this.props;
-
-    return (
-      <div className={className}>
-        { films.map((film) =>
-          (
-            <Card
-              onCardMouseOver={this.handleCardHover}
-              onCardTitleClick={onCardTitleClick}
-              key={film.id}
-              film={film}
-            />
-          )
-        )}
-      </div>
-    );
-  }
-}
+  return (
+    <div className={className}>
+      { films.map((film) =>
+        (
+          <Card
+            onCardMouseEnter={handleCardMouseEnter}
+            onCardTitleClick={onCardTitleClick}
+            key={film.id}
+            isActive={activeCard && activeCard.id === film.id}
+            film={film}
+          />
+        )
+      )}
+    </div>
+  );
+});
 
 Feed.propTypes = {
   // массив данных с фильмами
