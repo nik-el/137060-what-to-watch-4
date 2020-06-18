@@ -3,12 +3,14 @@ const testPromo = {
   year: 2000,
   genre: `test genre`
 };
+Object.freeze(testPromo);
 
 const testFilm = {
   title: `Test title`,
   thumbnail: `https://picsum.photos/id/0`,
   id: `0`,
 };
+Object.freeze(testFilm);
 
 const testFilms = [
   {
@@ -22,5 +24,6 @@ const testFilms = [
     id: `2`,
   },
 ];
+Object.freeze(testFilms);
 
 export {testPromo, testFilm, testFilms};

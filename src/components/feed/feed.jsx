@@ -6,16 +6,12 @@ import {FilmPropTypes} from "../../types/film-prop-types";
 export const Feed = React.memo(function Feed({films, onCardTitleClick, className}) {
   const [activeCard, setActiveCard] = useState(null);
 
-  const handleCardMouseEnter = (card) => {
-    setActiveCard(card);
-  };
-
   return (
     <div className={className}>
       { films.map((film) =>
         (
           <Card
-            onCardMouseEnter={handleCardMouseEnter}
+            onCardMouseEnter={setActiveCard}
             onCardTitleClick={onCardTitleClick}
             key={film.id}
             isActive={activeCard && activeCard.id === film.id}
