@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Card} from '../card/card';
+import {Feed} from '../feed/feed';
 
-export const Main = ({feedItems, promoItem, onCardTitleClick}) => {
+import {FilmPropTypes} from '../../types/film-prop-types';
+
+export const Main = ({promoItem, onCardTitleClick, films}) => {
   const {title, genre, year} = promoItem;
 
   return <>
@@ -104,17 +106,11 @@ export const Main = ({feedItems, promoItem, onCardTitleClick}) => {
           </li>
         </ul>
 
-        <div className="catalog__movies-list">
-          {feedItems.map((itemTitle)=>
-            (
-              <Card
-                title={itemTitle}
-                key={itemTitle}
-                onCardTitleClick={onCardTitleClick}
-              />
-            )
-          )}
-        </div>
+        <Feed
+          films={films}
+          onCardTitleClick={onCardTitleClick}
+          className="catalog__movies-list"
+        />
 
         <div className="catalog__more">
           <button className="catalog__button" type="button">Show more</button>
@@ -139,8 +135,8 @@ export const Main = ({feedItems, promoItem, onCardTitleClick}) => {
 };
 
 Main.propTypes = {
-  // карточки в фиде (только имя)
-  feedItems: PropTypes.arrayOf(PropTypes.string).isRequired,
+  // массив данных с фильмами
+  films: PropTypes.arrayOf(PropTypes.shape(FilmPropTypes)),
   // промо документ
   promoItem: PropTypes.shape({
     // имя промо документа в промо

@@ -1,19 +1,18 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {Card} from './card';
+import {Feed} from './feed';
 
-import {testFilm} from '../../utils/test.utils';
+import {testFilms} from '../../utils/test.utils';
 
 const onCardTitleClick = () => {};
-const onCardMouseEnter = () => {};
 
-it(`Card renders correctly`, () => {
+it(`Feed renders correctly`, () => {
   const tree = renderer
-    .create(<Card
-      film={testFilm}
+    .create(<Feed
+      films={testFilms}
       onCardTitleClick={onCardTitleClick}
-      onCardMouseEnter={onCardMouseEnter}
     />)
     .toJSON();
   expect(tree).toMatchSnapshot();
 });
+
