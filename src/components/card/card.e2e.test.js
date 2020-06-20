@@ -11,18 +11,18 @@ Enzyme.configure({
 
 describe(`Card`, () => {
   it(`Should Card title be clicked`, () => {
-    const onCardTitleClick = jest.fn();
+    const onCardClick = jest.fn();
 
     const card = shallow(
         <Card
           film={testFilm}
-          onCardTitleClick={onCardTitleClick}
+          onCardClick={onCardClick}
         />
     );
 
     const cardTitle = card.find(`.small-movie-card__title`);
     cardTitle.props().onClick();
-    expect(onCardTitleClick.mock.calls.length).toBe(1);
+    expect(onCardClick.mock.calls.length).toBe(1);
   });
 
   it(`Should Card be hovered with correct args`, () => {
