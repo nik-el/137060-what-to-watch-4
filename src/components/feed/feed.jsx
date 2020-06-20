@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Card} from '../card/card';
 import {FilmPropTypes} from "../../types/film-prop-types";
 
-export const Feed = React.memo(function Feed({films, onCardClick, className}) {
+export const Feed = React.memo(function Feed({films, onCardTitleClick, className}) {
   const [activeCard, setActiveCard] = useState(null);
 
   return (
@@ -12,7 +12,7 @@ export const Feed = React.memo(function Feed({films, onCardClick, className}) {
         (
           <Card
             onCardMouseEnter={setActiveCard}
-            onCardClick={onCardClick}
+            onCardTitleClick={onCardTitleClick}
             key={film.id}
             isActive={activeCard && activeCard.id === film.id}
             film={film}
@@ -27,6 +27,6 @@ Feed.propTypes = {
   // массив данных с фильмами
   films: PropTypes.arrayOf(PropTypes.shape(FilmPropTypes)),
   // обработчик клика по заголовку карточки
-  onCardClick: PropTypes.func.isRequired,
+  onCardTitleClick: PropTypes.func.isRequired,
   className: PropTypes.string
 };

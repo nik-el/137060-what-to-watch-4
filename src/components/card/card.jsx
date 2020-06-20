@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 
 import {FilmPropTypes} from "../../types/film-prop-types";
 
-export const Card = React.memo(function Card({film, onCardClick, onCardMouseEnter}) {
+export const Card = React.memo(function Card({film, onCardTitleClick, onCardMouseEnter}) {
   const {title, thumbnail} = film;
 
   return <article
@@ -16,7 +16,7 @@ export const Card = React.memo(function Card({film, onCardClick, onCardMouseEnte
     </div>
     <h3
       className="small-movie-card__title"
-      onClick={() => onCardClick(film.id)}
+      onClick={() => onCardTitleClick(film.id)}
     >
       <Link className="small-movie-card__link" to="/detailed">
         {title}
@@ -29,7 +29,7 @@ Card.propTypes = {
   // данные фильма
   film: PropTypes.shape(FilmPropTypes),
   // обработчик клика по заголовку карточки
-  onCardClick: PropTypes.func,
+  onCardTitleClick: PropTypes.func,
   // обработчик ховера на карточку
   onCardMouseEnter: PropTypes.func,
 };

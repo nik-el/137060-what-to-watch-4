@@ -5,7 +5,7 @@ import {BrowserRouter as Router} from 'react-router-dom';
 
 import {testPromo, testFilms} from '../../utils/test.utils';
 
-const onCardClick = () => {};
+const onCardTitleClick = () => {};
 
 it(`Main renders correctly`, () => {
   const tree = renderer
@@ -14,7 +14,7 @@ it(`Main renders correctly`, () => {
           <Main
             films={testFilms}
             promoItem={testPromo}
-            onCardClick={onCardClick}
+            onCardTitleClick={onCardTitleClick}
           />
         </Router>
     )

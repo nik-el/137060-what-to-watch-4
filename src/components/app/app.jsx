@@ -19,7 +19,7 @@ export const App = React.memo(function App(props) {
       <Switch>
         <Route exact path="/">
           <Main
-            onCardClick={setCurrentFilmId}
+            onCardTitleClick={setCurrentFilmId}
             {...props}
           />;
         </Route>

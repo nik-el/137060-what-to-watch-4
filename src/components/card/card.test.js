@@ -5,7 +5,7 @@ import {BrowserRouter as Router} from 'react-router-dom';
 
 import {testFilm} from '../../utils/test.utils';
 
-const onCardClick = () => {};
+const onCardTitleClick = () => {};
 const onCardMouseEnter = () => {};
 
 it(`Card renders correctly`, () => {
@@ -14,7 +14,7 @@ it(`Card renders correctly`, () => {
         <Router>
           <Card
             film={testFilm}
-            onCardClick={onCardClick}
+            onCardTitleClick={onCardTitleClick}
             onCardMouseEnter={onCardMouseEnter}
           />
         </Router>

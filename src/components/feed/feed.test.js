@@ -5,7 +5,7 @@ import {BrowserRouter as Router} from 'react-router-dom';
 
 import {testFilms} from '../../utils/test.utils';
 
-const onCardClick = () => {};
+const onCardTitleClick = () => {};
 
 it(`Feed renders correctly`, () => {
   const tree = renderer
@@ -13,7 +13,7 @@ it(`Feed renders correctly`, () => {
         <Router>
           <Feed
             films={testFilms}
-            onCardClick={onCardClick}
+            onCardTitleClick={onCardTitleClick}
           />
         </Router>
     )

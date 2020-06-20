@@ -4,7 +4,7 @@ import {Feed} from '../feed/feed';
 
 import {FilmPropTypes} from '../../types/film-prop-types';
 
-export const Main = ({promoItem, onCardClick, films}) => {
+export const Main = ({promoItem, onCardTitleClick, films}) => {
   const {title, genre, year} = promoItem;
 
   return <>
@@ -108,7 +108,7 @@ export const Main = ({promoItem, onCardClick, films}) => {
 
         <Feed
           films={films}
-          onCardClick={onCardClick}
+          onCardTitleClick={onCardTitleClick}
           className="catalog__movies-list"
         />
 
@@ -147,5 +147,5 @@ Main.propTypes = {
     year: PropTypes.number.isRequired,
   }).isRequired,
   // обработчик клика по заголовку карточки
-  onCardClick: PropTypes.func.isRequired,
+  onCardTitleClick: PropTypes.func.isRequired,
 };
