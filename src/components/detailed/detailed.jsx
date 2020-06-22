@@ -1,8 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {FilmPropTypes} from "../../types/film-prop-types";
+import {useParams} from 'react-router-dom';
 
-export const Detailed = React.memo(function Detailed({film}) {
+export const Detailed = React.memo(function Detailed({films}) {
+  const {id} = useParams();
+
+  console.log('idididid:', id);
+  const film = films.find((item) => item.id === id);
   const {
     title,
     genre,
@@ -93,5 +98,5 @@ export const Detailed = React.memo(function Detailed({film}) {
 });
 
 Detailed.propTypes = {
-  film: PropTypes.shape(FilmPropTypes)
+  films: PropTypes.arrayOf(PropTypes.shape(FilmPropTypes)),
 };

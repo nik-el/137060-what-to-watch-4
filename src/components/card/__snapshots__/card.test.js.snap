@@ -21,7 +21,7 @@ exports[`Card renders correctly 1`] = `
   >
     <a
       className="small-movie-card__link"
-      href="/detailed"
+      href="/detailed/0"
       onClick={[Function]}
     >
       Test title

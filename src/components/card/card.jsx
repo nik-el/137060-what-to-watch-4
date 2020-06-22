@@ -18,7 +18,7 @@ export const Card = React.memo(function Card({film, onCardTitleClick, onCardMous
       className="small-movie-card__title"
       onClick={() => onCardTitleClick(film.id)}
     >
-      <Link className="small-movie-card__link" to="/detailed">
+      <Link className="small-movie-card__link" to={`/detailed/${film.id}`}>
         {title}
       </Link>
     </h3>

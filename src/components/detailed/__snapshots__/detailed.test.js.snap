@@ -12,7 +12,7 @@ exports[`Detailed renders correctly 1`] = `
     >
       <img
         alt="The Grand Budapest Hotel"
-        src="https://picsum.photos/id/0"
+        src="https://picsum.photos/id/1"
       />
     </div>
     <div
@@ -24,7 +24,7 @@ exports[`Detailed renders correctly 1`] = `
         <h2
           className="movie-card__title"
         >
-          Test title
+          Test title 1
         </h2>
         <p
           className="movie-card__meta"
@@ -95,7 +95,7 @@ exports[`Detailed renders correctly 1`] = `
         className="movie-card__poster movie-card__poster--big"
       >
         <img
-          alt="Test title"
+          alt="Test title 1"
           height="327"
           src="https://picsum.photos/id/2"
           width="218"

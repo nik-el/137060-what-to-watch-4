@@ -22,7 +22,7 @@ exports[`Feed renders correctly 1`] = `
     >
       <a
         className="small-movie-card__link"
-        href="/detailed"
+        href="/detailed/1"
         onClick={[Function]}
       >
         Test title 1
@@ -49,7 +49,7 @@ exports[`Feed renders correctly 1`] = `
     >
       <a
         className="small-movie-card__link"
-        href="/detailed"
+        href="/detailed/2"
         onClick={[Function]}
       >
         Test title 2
