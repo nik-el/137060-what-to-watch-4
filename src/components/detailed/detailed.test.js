@@ -5,7 +5,6 @@ import {Detailed} from './detailed';
 
 import {testFilms} from '../../utils/test.utils';
 const currentTestFilmId = testFilms[0].id;
-console.log('currentTestFilmId:', currentTestFilmId);
 
 it(`Detailed renders correctly`, () => {
   const tree = renderer

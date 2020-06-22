@@ -6,7 +6,6 @@ import {useParams} from 'react-router-dom';
 export const Detailed = React.memo(function Detailed({films}) {
   const {id} = useParams();
 
-  console.log('idididid:', id);
   const film = films.find((item) => item.id === id);
   const {
     title,
