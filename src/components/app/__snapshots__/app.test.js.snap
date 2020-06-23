@@ -277,7 +277,8 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="#"
+              href="/detailed/1"
+              onClick={[Function]}
             >
               Test title 1
             </a>
@@ -303,7 +304,8 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="#"
+              href="/detailed/2"
+              onClick={[Function]}
             >
               Test title 2
             </a>
@@ -356,5 +358,6 @@ Array [
       </div>
     </footer>
   </div>,
+  ";",
 ]
 `;

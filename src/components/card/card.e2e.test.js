@@ -22,7 +22,7 @@ describe(`Card`, () => {
 
     const cardTitle = card.find(`.small-movie-card__title`);
     cardTitle.props().onClick();
-    expect(onCardTitleClick.mock.calls.length).toBe(1);
+    expect(onCardTitleClick.mock.calls[0][0]).toBe(testFilm.id);
   });
 
   it(`Should Card be hovered with correct args`, () => {

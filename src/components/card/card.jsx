@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
+
 import {FilmPropTypes} from "../../types/film-prop-types";
 
 export const Card = React.memo(function Card({film, onCardTitleClick, onCardMouseEnter}) {
@@ -14,9 +16,11 @@ export const Card = React.memo(function Card({film, onCardTitleClick, onCardMous
     </div>
     <h3
       className="small-movie-card__title"
-      onClick={onCardTitleClick}
+      onClick={() => onCardTitleClick(film.id)}
     >
-      <a className="small-movie-card__link" href="#">{title}</a>
+      <Link className="small-movie-card__link" to={`/detailed/${film.id}`}>
+        {title}
+      </Link>
     </h3>
   </article>;
 });
