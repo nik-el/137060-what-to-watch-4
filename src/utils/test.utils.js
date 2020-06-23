@@ -15,7 +15,9 @@ const testFilm = {
   rating: `5,5`,
   ratingCount: 100,
   directors: [`Test director`],
-  starring: [`Test Star 1`, `Test Star 2`]};
+  starring: [`Test Star 1`, `Test Star 2`],
+  preview: `http://test_preview.com`
+};
 Object.freeze(testFilm);
 
 const testFilms = [
