@@ -1,5 +1,5 @@
 import React from 'react';
-import Enzyme, {shallow} from 'enzyme';
+import Enzyme, {mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 import {Player} from './player';
 
@@ -10,16 +10,16 @@ Enzyme.configure({
 });
 
 describe(`Player`, () => {
-  it(`Should Player be on play status`, () => {
-    const player = shallow(
-        <Player
-          previewSrc={testFilm.preview}
-          forcePlay={true}
-        />
-    );
-    const videoEl = player.find(`.small-player`);
-    expect(videoEl.hasClass(`small-player`)).toBe(true);
+  it(`Should call play`, () => {
+    const playStub = jest
+      .spyOn(window.HTMLMediaElement.prototype, `play`)
+      .mockImplementation(() => {});
 
+    const player = mount(<Player
+      previewSrc={testFilm.preview}
+    />);
+
+    player.setProps({forcePlay: true});
+    expect(playStub).toHaveBeenCalled();
   });
-
 });
