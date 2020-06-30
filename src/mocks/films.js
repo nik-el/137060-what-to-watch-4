@@ -11,6 +11,7 @@ export const films = [
     directors: [`Wes Andreson`],
     starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     id: `1`,
+    preview: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
   },
   {
     title: `Raging Bull`,
@@ -22,7 +23,8 @@ export const films = [
     rating: `4,6`,
     ratingCount: 230,
     directors: [`Wes Andreson`],
-    starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`]
+    starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+    preview: `https://mazwai.com/videvo_files/video/free/2018-06/small_watermarked/travelpockets_iceland_land_of_fire_and_ice_preview.mp4`
   },
   {
     title: `Amelie`,
@@ -34,7 +36,8 @@ export const films = [
     rating: `4,6`,
     ratingCount: 230,
     directors: [`Wes Andreson`],
-    starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`]
+    starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+    preview: `https://mazwai.com/videvo_files/video/free/2015-11/small_watermarked/finlandia_preview.mp4`
   },
   {
     title: `Titanic`,
@@ -46,7 +49,8 @@ export const films = [
     rating: `4,6`,
     ratingCount: 230,
     directors: [`Wes Andreson`],
-    starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`]
+    starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+    preview: `https://mazwai.com/videvo_files/video/free/2016-04/small_watermarked/the_valley-graham_uheslki_preview.mp4`
   },
   {
     title: `Good Will Hunting`,
@@ -58,7 +62,8 @@ export const films = [
     rating: `4,6`,
     ratingCount: 230,
     directors: [`Wes Andreson`],
-    starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`]
+    starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+    preview: `https://mazwai.com/videvo_files/video/free/2016-01/small_watermarked/test_flight_preview.mp4?v=1941987`
   },
   {
     title: `Arrival`,
@@ -70,7 +75,8 @@ export const films = [
     rating: `4,6`,
     ratingCount: 230,
     directors: [`Wes Andreson`],
-    starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`]
+    starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+    preview: `https://mazwai.com/videvo_files/video/free/2016-10/small_watermarked/andrew-arthur-breese_boneyard-raw-broll_preview.mp4`
   },
   {
     title: `Lost In Translation`,
@@ -82,7 +88,8 @@ export const films = [
     rating: `4,6`,
     ratingCount: 230,
     directors: [`Wes Andreson`],
-    starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`]
+    starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+    preview: `https://mazwai.com/videvo_files/video/free/2015-11/small_watermarked/white-lilies_preview.mp4`
   },
   {
     title: `No Country For Old Men`,
@@ -94,6 +101,7 @@ export const films = [
     rating: `4,6`,
     ratingCount: 230,
     directors: [`Wes Andreson`],
-    starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`]
+    starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
+    preview: `https://mazwai.com/videvo_files/video/free/2015-11/small_watermarked/finlandia_preview.mp4`
   },
 ];
