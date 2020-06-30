@@ -6,13 +6,13 @@ import {FilmPropTypes} from "../../types/film-prop-types";
 
 import {Player} from '../player/player';
 
+const VIDEO_DELAY = 1000;
+
 export const Card = React.memo(function Card({film, onCardTitleClick, onCardMouseEnter}) {
   const {title, thumbnail, preview} = film;
 
   const [isShowPlayer, setShowPlayer] = useState(false);
   const [timerId, setTimerId] = useState(null);
-
-  const VIDEO_DELAY = 1000;
 
   const handleCardMouseEnter = () => {
     onCardMouseEnter(film);

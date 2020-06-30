@@ -3,20 +3,20 @@ import PropTypes from 'prop-types';
 
 export const Player = React.memo(function Player({forcePlay, previewSrc, autoPlay, muted}) {
   const videoEl = useRef(null);
-  const [isPlay, setPlay] = useState(false);
+  const [isPlaying, setPlaying] = useState(false);
 
   useEffect(() => {
-    if (!forcePlay && !isPlay) {
+    if (!forcePlay && !isPlaying) {
       return;
     }
 
-    if (forcePlay && !isPlay) {
+    if (forcePlay) {
       videoEl.current.play();
-    } else if (isPlay && !forcePlay) {
+    } else if (!forcePlay) {
       videoEl.current.pause();
     }
 
-    setPlay(!videoEl.current.paused);
+    setPlaying(!videoEl.current.paused);
   }, [forcePlay]);
 
 
@@ -25,7 +25,7 @@ export const Player = React.memo(function Player({forcePlay, previewSrc, autoPla
     src={previewSrc}
     autoPlay={autoPlay}
     muted={muted}
-    className={`small-player` + (isPlay ? ` small-player_play` : ``)}
+    className={`small-player`}
   />;
 
 });
