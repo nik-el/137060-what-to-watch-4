@@ -1,10 +1,3 @@
-const testPromo = {
-  title: `Test title`,
-  year: 2000,
-  genre: `test genre`
-};
-Object.freeze(testPromo);
-
 const testFilm = {
   title: `Test title`,
   thumbnail: `https://picsum.photos/id/0`,
@@ -25,7 +18,7 @@ const testFilms = [
     title: `Test title 1`,
     thumbnail: `https://picsum.photos/id/1`,
     id: `1`,
-    genre: `Comedy`,
+    genre: `test genre 1`,
     poster: `https://picsum.photos/id/2`,
     description: `Test description`,
     rating: `5,5`,
@@ -37,7 +30,7 @@ const testFilms = [
     title: `Test title 2`,
     thumbnail: `https://picsum.photos/id/2`,
     id: `2`,
-    genre: `Comedy`,
+    genre: `test genre 2`,
     poster: `https://picsum.photos/id/2`,
     description: `Test description`,
     rating: `5,5`,
@@ -49,4 +42,7 @@ const testFilms = [
 ];
 Object.freeze(testFilms);
 
-export {testPromo, testFilm, testFilms};
+const testGenres = [`test genre 1`, `test genre 2`];
+Object.freeze(testGenres);
+
+export {testFilm, testFilms, testGenres};

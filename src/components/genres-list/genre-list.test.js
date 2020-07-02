@@ -1,21 +1,21 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {Main} from './main';
+import {GenresList} from './genres-list';
 import {BrowserRouter as Router} from 'react-router-dom';
 
 import {testFilms, testGenres} from '../../utils/test.utils';
 
-const onCardTitleClick = () => {};
+const onGenreClick = () => {};
 
-it(`Main renders correctly`, () => {
+it(`GenresList renders correctly`, () => {
   const tree = renderer
     .create(
         <Router>
-          <Main
+          <GenresList
             films={testFilms}
             genres={testGenres}
-            promoItem={testFilms[0]}
-            onCardTitleClick={onCardTitleClick}
+            currentGenre={testGenres[0]}
+            onGenreClick={onGenreClick}
           />
         </Router>
     )
