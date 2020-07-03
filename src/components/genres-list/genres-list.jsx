@@ -4,18 +4,24 @@ import PropTypes from 'prop-types';
 import {capitalize} from '../../utils/capitalize.utils';
 
 export const GenresList = React.memo(function GenresList({genres, onGenreClick, currentGenre}) {
+  const handleGenreClick = (event, genre) => {
+    event.preventDefault();
+    onGenreClick(genre);
+  };
+
+  const getGenreClass = (genre) => (
+    `catalog__genres-item` + (currentGenre === genre ? ` catalog__genres-item--active` : ``)
+  );
+
   return <ul className="catalog__genres-list">
     {
       [null, ...genres].map((genre, i)=> (
         <li
           key={genre + i}
-          className={`catalog__genres-item` + (currentGenre === genre ? ` catalog__genres-item--active` : ``)}
+          className={getGenreClass(genre)}
         >
           <a
-            onClick={(event)=> {
-              event.preventDefault();
-              onGenreClick(genre);
-            }}
+            onClick={(e) => handleGenreClick(e, genre)}
             href="#"
             className="catalog__genres-link">{!genre ? `All genres` : capitalize(genre)}</a>
         </li>
