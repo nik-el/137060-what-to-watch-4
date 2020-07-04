@@ -33,6 +33,7 @@ const App = React.memo(function App(props) {
         <Route path="/detailed/:id">
           <Detailed
             films={films}
+            onCardTitleClick={handleCardTitleClick}
           />
         </Route>
       </Switch>
