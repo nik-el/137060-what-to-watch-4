@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 import {capitalize} from '../../utils/capitalize.utils';
 
+const DEFAULT_GENRE = null;
+
 export const GenresList = React.memo(function GenresList({genres, onGenreClick, currentGenre}) {
   const handleGenreClick = (event, genre) => {
     event.preventDefault();
@@ -15,7 +17,7 @@ export const GenresList = React.memo(function GenresList({genres, onGenreClick, 
 
   return <ul className="catalog__genres-list">
     {
-      [null, ...genres].map((genre, i)=> (
+      [DEFAULT_GENRE, ...genres].map((genre, i)=> (
         <li
           key={genre + i}
           className={getGenreClass(genre)}
