@@ -1,16 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Feed} from '../feed/feed';
+import {GenresList} from '../genres-list/genres-list';
 
 import {FilmPropTypes} from '../../types/film-prop-types';
 
-export const Main = ({promoItem, onCardTitleClick, films}) => {
-  const {title, genre, year} = promoItem;
+export const Main = ({promoItem, onCardTitleClick, films, genres, onGenreClick, currentGenre}) => {
+  const {title, genre, releaseYear, poster, thumbnail} = promoItem;
 
   return <>
     <section className="movie-card">
       <div className="movie-card__bg">
-        <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel"/>
+        <img src={thumbnail} alt="The Grand Budapest Hotel"/>
       </div>
 
       <h1 className="visually-hidden">WTW</h1>
@@ -34,7 +35,7 @@ export const Main = ({promoItem, onCardTitleClick, films}) => {
       <div className="movie-card__wrap">
         <div className="movie-card__info">
           <div className="movie-card__poster">
-            <img src="img/the-grand-budapest-hotel-poster.jpg"
+            <img src={poster}
               alt="The Grand Budapest Hotel poster"
               width="218"
               height="327"
@@ -47,7 +48,7 @@ export const Main = ({promoItem, onCardTitleClick, films}) => {
             </h2>
             <p className="movie-card__meta">
               <span className="movie-card__genre">{genre}</span>
-              <span className="movie-card__year">{year}</span>
+              <span className="movie-card__year">{releaseYear}</span>
             </p>
 
             <div className="movie-card__buttons">
@@ -73,38 +74,12 @@ export const Main = ({promoItem, onCardTitleClick, films}) => {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-        <ul className="catalog__genres-list">
-          <li className="catalog__genres-item catalog__genres-item--active">
-            <a href="#" className="catalog__genres-link">All genres</a>
-          </li>
-          <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Comedies</a>
-          </li>
-          <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Crime</a>
-          </li>
-          <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Documentary</a>
-          </li>
-          <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Dramas</a>
-          </li>
-          <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Horror</a>
-          </li>
-          <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Kids & Family</a>
-          </li>
-          <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Romance</a>
-          </li>
-          <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Sci-Fi</a>
-          </li>
-          <li className="catalog__genres-item">
-            <a href="#" className="catalog__genres-link">Thrillers</a>
-          </li>
-        </ul>
+        <GenresList
+          films={films}
+          genres={genres}
+          currentGenre={currentGenre}
+          onGenreClick={onGenreClick}
+        />
 
         <Feed
           films={films}
@@ -137,15 +112,14 @@ export const Main = ({promoItem, onCardTitleClick, films}) => {
 Main.propTypes = {
   // массив данных с фильмами
   films: PropTypes.arrayOf(PropTypes.shape(FilmPropTypes)),
+  // список доступных жанров
+  genres: PropTypes.arrayOf(PropTypes.string),
   // промо документ
-  promoItem: PropTypes.shape({
-    // имя промо документа в промо
-    title: PropTypes.string.isRequired,
-    // жанр промо документа в промо
-    genre: PropTypes.string.isRequired,
-    // год выпуска промо документа
-    year: PropTypes.number.isRequired,
-  }).isRequired,
+  promoItem: PropTypes.shape(FilmPropTypes).isRequired,
   // обработчик клика по заголовку карточки
   onCardTitleClick: PropTypes.func.isRequired,
+  // Обработчик клика по жанру
+  onGenreClick: PropTypes.func,
+  // текущий выбранный жанр
+  currentGenre: PropTypes.string
 };
