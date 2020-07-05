@@ -15,9 +15,9 @@ import {ActionCreator} from '../../reducer';
 const App = React.memo(function App(props) {
   const {
     films,
-    onGenreClick
+    handleGenreClick,
+    handleCardTitleClick
   } = props;
-  const handleCardTitleClick = () => {};
 
   return (
     <Router>
@@ -25,7 +25,7 @@ const App = React.memo(function App(props) {
         <Route exact path="/">
           <Main
             onCardTitleClick={handleCardTitleClick}
-            onGenreClick={onGenreClick}
+            onGenreClick={handleGenreClick}
             promoItem={films[0]}
             {...props}
           />;
@@ -48,9 +48,13 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onGenreClick(genre) {
+  handleGenreClick(genre) {
     dispatch(ActionCreator.setFilter(genre));
     dispatch(ActionCreator.getFilmsByGenre(genre));
+  },
+  handleCardTitleClick(film) {
+    dispatch(ActionCreator.setFilter(film.genre));
+    dispatch(ActionCreator.getFilmsByGenre(film.genre));
   }
 });
 
@@ -59,7 +63,9 @@ App.propTypes = {
   // данные с фильмами
   films: PropTypes.arrayOf(PropTypes.shape(FilmPropTypes)),
   // обработчик клика по жанру
-  onGenreClick: PropTypes.func
+  handleGenreClick: PropTypes.func,
+  // обработчик клика по заголовку карточки
+  handleCardTitleClick: PropTypes.func
 };
 
 export {App};

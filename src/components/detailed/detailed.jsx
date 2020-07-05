@@ -37,7 +37,7 @@ export const Detailed = React.memo(function Detailed({films, onCardTitleClick}) 
       default:
         return overviewEl();
     }
-  }
+  };
 
   const overviewEl = () => (<>
         <div className="movie-rating">
@@ -93,7 +93,7 @@ export const Detailed = React.memo(function Detailed({films, onCardTitleClick}) 
         <div className="review">
           <blockquote className="review__quote">
             <p className="review__text">Discerning travellers and Wes Anderson fans will luxuriate in the glorious
-              Mittel-European kitsch of one of the director's funniest and most exquisitely designed movies in
+              Mittel-European kitsch of one of the funniest and most exquisitely designed movies in
               years.</p>
 
             <footer className="review__details">
@@ -107,8 +107,8 @@ export const Detailed = React.memo(function Detailed({films, onCardTitleClick}) 
 
         <div className="review">
           <blockquote className="review__quote">
-            <p className="review__text">Anderson's films are too precious for some, but for those of us willing to lose
-              ourselves in them, they're a delight. "The Grand Budapest Hotel" is no different, except that he has added
+            <p className="review__text">Andersons films are too precious for some, but for those of us willing to lose
+              ourselves in them, theyre a delight. «The Grand Budapest Hotel» is no different, except that he has added
               a hint of gravitas to the mix, improving the recipe.</p>
 
             <footer className="review__details">
@@ -122,7 +122,7 @@ export const Detailed = React.memo(function Detailed({films, onCardTitleClick}) 
 
         <div className="review">
           <blockquote className="review__quote">
-            <p className="review__text">I didn't find it amusing, and while I can appreciate the creativity, it's an
+            <p className="review__text">I didnt find it amusing, and while I can appreciate the creativity, its an
               hour and 40 minutes I wish I could take back.</p>
 
             <footer className="review__details">
