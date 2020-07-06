@@ -6,6 +6,8 @@ import {BrowserRouter as Router} from 'react-router-dom';
 import {testFilms, testGenres} from '../../utils/test.utils';
 
 const onCardTitleClick = () => {};
+const onShowMoreClick = () => {};
+const onGenreClick = () => {};
 
 it(`Main renders correctly`, () => {
   const tree = renderer
@@ -16,6 +18,8 @@ it(`Main renders correctly`, () => {
             genres={testGenres}
             promoItem={testFilms[0]}
             onCardTitleClick={onCardTitleClick}
+            onShowMoreClick={onShowMoreClick}
+            onGenreClick={onGenreClick}
           />
         </Router>
     )

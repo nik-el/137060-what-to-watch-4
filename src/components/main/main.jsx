@@ -2,11 +2,14 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {Feed} from '../feed/feed';
 import {GenresList} from '../genres-list/genres-list';
+import {ShowMore} from '../show-more/show-more';
 
 import {FilmPropTypes} from '../../types/film-prop-types';
 
-export const Main = ({promoItem, onCardTitleClick, films, genres, onGenreClick, currentGenre}) => {
+export const Main = ({promoItem, onCardTitleClick, films, genres, onGenreClick, currentGenre, onShowMoreClick, feedLimit}) => {
   const {title, genre, releaseYear, poster, thumbnail} = promoItem;
+
+  const canShowMore = feedLimit < films.length;
 
   return <>
     <section className="movie-card">
@@ -85,11 +88,13 @@ export const Main = ({promoItem, onCardTitleClick, films, genres, onGenreClick, 
           films={films}
           onCardTitleClick={onCardTitleClick}
           className="catalog__movies-list"
+          limit={feedLimit}
         />
 
-        <div className="catalog__more">
-          <button className="catalog__button" type="button">Show more</button>
-        </div>
+        { canShowMore && <ShowMore
+          offset={feedLimit}
+          onShowMoreClick={onShowMoreClick}
+        /> }
       </section>
 
       <footer className="page-footer">
@@ -119,7 +124,11 @@ Main.propTypes = {
   // обработчик клика по заголовку карточки
   onCardTitleClick: PropTypes.func.isRequired,
   // Обработчик клика по жанру
-  onGenreClick: PropTypes.func,
+  onGenreClick: PropTypes.func.isRequired,
   // текущий выбранный жанр
-  currentGenre: PropTypes.string
+  currentGenre: PropTypes.string,
+  // обработчик клика по кнопки Показать больше
+  onShowMoreClick: PropTypes.func.isRequired,
+  // общее кол-во показанных фильмов
+  feedLimit: PropTypes.number
 };

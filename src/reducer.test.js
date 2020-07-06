@@ -5,6 +5,7 @@ it(`Reducer without additional parameters should return initial state`, () => {
   expect(reducer(undefined, {})).toEqual({
     films,
     currentGenre: null,
+    feedLimit: 4,
     genres: [`crime`, `comedy`, `action`, `documentary`],
   });
 });
