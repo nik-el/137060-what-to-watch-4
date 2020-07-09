@@ -43,7 +43,7 @@ export const Card = React.memo(function Card({film, onCardTitleClick, onCardMous
     </div>
     <h3
       className="small-movie-card__title"
-      onClick={() => onCardTitleClick(film.id)}
+      onClick={() => onCardTitleClick(film)}
     >
       <Link className="small-movie-card__link" to={`/detailed/${film.id}`}>
         {title}
