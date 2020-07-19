@@ -1,22 +1,24 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {App} from './app';
+import configureMockStore from "redux-mock-store";
+import {Provider} from "react-redux";
 
+import {App} from './app';
 import {testFilms, testGenres} from '../../utils/test.utils';
-const onShowMoreClick = () => {};
-const onGenreClick = () => {};
-const onCardTitleClick = () => {};
+
+const mockStore = configureMockStore();
 
 it(`App renders correctly`, () => {
+  const store = mockStore({
+    films: testFilms,
+    genres: testGenres
+  });
   const tree = renderer
-    .create(<App
-      films={testFilms}
-      promoItem={testFilms[0]}
-      genres={testGenres}
-      onShowMoreClick={onShowMoreClick}
-      onGenreClick={onGenreClick}
-      onCardTitleClick={onCardTitleClick}
-    />)
+    .create(
+        <Provider store={store}>
+          <App />
+        </Provider>
+    )
     .toJSON();
   expect(tree).toMatchSnapshot();
 });

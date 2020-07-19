@@ -5,14 +5,22 @@ import {Link} from 'react-router-dom';
 import {FilmPropTypes} from "../../types/film-prop-types";
 
 import {Player} from '../player/player';
+import {useDispatch} from "react-redux";
+import {ActionCreator} from "../../reducer";
 
 const VIDEO_DELAY = 1000;
 
-export const Card = React.memo(function Card({film, onCardTitleClick, onCardMouseEnter}) {
+export const Card = React.memo(function Card({film, onCardMouseEnter}) {
   const {title, thumbnail, preview} = film;
 
+  const dispatch = useDispatch();
   const [isShowPlayer, setShowPlayer] = useState(false);
   const [timerId, setTimerId] = useState(null);
+
+  const handleCardClick = () => {
+    dispatch(ActionCreator.setFilter(film.genre));
+    dispatch(ActionCreator.getFilmsByGenre(film.genre));
+  };
 
   const handleCardMouseEnter = () => {
     onCardMouseEnter(film);
@@ -43,7 +51,7 @@ export const Card = React.memo(function Card({film, onCardTitleClick, onCardMous
     </div>
     <h3
       className="small-movie-card__title"
-      onClick={() => onCardTitleClick(film)}
+      onClick={handleCardClick}
     >
       <Link className="small-movie-card__link" to={`/detailed/${film.id}`}>
         {title}
@@ -55,8 +63,6 @@ export const Card = React.memo(function Card({film, onCardTitleClick, onCardMous
 Card.propTypes = {
   // данные фильма
   film: PropTypes.shape(FilmPropTypes),
-  // обработчик клика по заголовку карточки
-  onCardTitleClick: PropTypes.func,
   // обработчик ховера на карточку
   onCardMouseEnter: PropTypes.func,
 };

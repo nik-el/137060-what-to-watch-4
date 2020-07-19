@@ -1,38 +1,33 @@
 import React from 'react';
-import Enzyme, {shallow} from 'enzyme';
+import Enzyme, {mount} from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
-import {Card} from './card';
+import {Provider} from 'react-redux';
+import configureMockStore from "redux-mock-store";
 
+import {Card} from './card';
 import {testFilm} from '../../utils/test.utils';
+import {BrowserRouter as Router} from "react-router-dom";
 
 Enzyme.configure({
   adapter: new Adapter()
 });
 
+const mockStore = configureMockStore();
+
 describe(`Card`, () => {
-  it(`Should Card title be clicked`, () => {
-    const onCardTitleClick = jest.fn();
-
-    const card = shallow(
-        <Card
-          film={testFilm}
-          onCardTitleClick={onCardTitleClick}
-        />
-    );
-
-    const cardTitle = card.find(`.small-movie-card__title`);
-    cardTitle.props().onClick();
-    expect(onCardTitleClick.mock.calls[0][0]).toBe(testFilm);
-  });
-
   it(`Should Card be hovered with correct args`, () => {
     const onCardMouseEnter = jest.fn();
+    const store = mockStore({});
 
-    const card = shallow(
-        <Card
-          film={testFilm}
-          onCardMouseEnter={onCardMouseEnter}
-        />
+    const card = mount(
+        <Provider store={store}>
+          <Router>
+            <Card
+              film={testFilm}
+              onCardMouseEnter={onCardMouseEnter}
+            />
+          </Router>
+        </Provider>
     );
 
     const cardBlock = card.find(`.small-movie-card`);

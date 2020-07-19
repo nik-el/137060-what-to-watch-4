@@ -1,10 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {useDispatch} from "react-redux";
 
-export const ShowMore = React.memo(function ShowMore({offset, onShowMoreClick}) {
+import {ActionCreator} from "../../reducer";
+
+export const ShowMore = React.memo(function ShowMore({offset}) {
+  const dispatch = useDispatch();
+  const handleShowMoreClick = () => {
+    dispatch(ActionCreator.setFeedLimit(offset));
+  };
   return <div className="catalog__more">
     <button
-      onClick={() => onShowMoreClick(offset)}
+      onClick={() => handleShowMoreClick()}
       className="catalog__button"
       type="button"
     >
@@ -16,6 +23,4 @@ export const ShowMore = React.memo(function ShowMore({offset, onShowMoreClick}) 
 ShowMore.propTypes = {
   // на сколько еще увеличиваем кол-во видимых элементов
   offset: PropTypes.number.isRequired,
-  // обработчик клика по кнопку
-  onShowMoreClick: PropTypes.func.isRequired
 };

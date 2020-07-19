@@ -1,15 +1,22 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import {useSelector, useDispatch} from "react-redux";
 
 import {capitalize} from '../../utils/capitalize.utils';
+import {ActionCreator} from "../../reducer";
 
 const DEFAULT_GENRE = null;
 
-export const GenresList = React.memo(function GenresList({genres, onGenreClick, currentGenre}) {
+export const GenresList = React.memo(function GenresList() {
+  const dispatch = useDispatch();
+
   const handleGenreClick = (event, genre) => {
     event.preventDefault();
-    onGenreClick(genre);
+    dispatch(ActionCreator.setFilter(genre));
+    dispatch(ActionCreator.getFilmsByGenre(genre));
   };
+
+  const currentGenre = useSelector((state) => state.currentGenre);
+  const genres = useSelector((state) => state.genres);
 
   const getGenreClass = (genre) => (
     `catalog__genres-item` + (currentGenre === genre ? ` catalog__genres-item--active` : ``)
@@ -31,9 +38,3 @@ export const GenresList = React.memo(function GenresList({genres, onGenreClick, 
     }
   </ul>;
 });
-
-GenresList.propTypes = {
-  genres: PropTypes.arrayOf(PropTypes.string),
-  currentGenre: PropTypes.string,
-  onGenreClick: PropTypes.func
-};
