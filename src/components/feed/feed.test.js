@@ -1,21 +1,28 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import {Feed} from './feed';
+import {Provider} from 'react-redux';
 import {BrowserRouter as Router} from 'react-router-dom';
+import configureMockStore from 'redux-mock-store';
 
+import {Feed} from './feed';
 import {testFilms} from '../../utils/test.utils';
 
-const onCardTitleClick = () => {};
+const mockStore = configureMockStore();
 
 it(`Feed renders correctly`, () => {
+  const store = mockStore({
+    films: testFilms
+  });
+
   const tree = renderer
     .create(
-        <Router>
-          <Feed
-            films={testFilms}
-            onCardTitleClick={onCardTitleClick}
-          />
-        </Router>
+        <Provider store={store}>
+          <Router>
+            <Feed
+              films={testFilms}
+            />
+          </Router>
+        </Provider>
     )
     .toJSON();
   expect(tree).toMatchSnapshot();

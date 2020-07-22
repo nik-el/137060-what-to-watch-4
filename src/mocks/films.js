@@ -110,5 +110,5 @@ export const films = [
     directors: [`Wes Andreson`],
     starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`],
     preview: `https://mazwai.com/videvo_files/video/free/2015-11/small_watermarked/finlandia_preview.mp4`
-  },
+  }
 ];

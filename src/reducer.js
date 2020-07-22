@@ -7,15 +7,19 @@ const getGenres = (filmItems) => {
   return [...genres];
 };
 
+const FEED_LIMIT = 4;
+
 const initialState = {
   films,
   currentGenre: null,
   genres: getGenres(films),
+  feedLimit: FEED_LIMIT
 };
 
 const ActionType = {
   SET_FILTER: `SET_FILTER`,
-  GET_FILMS_BY_GENRE: `GET_FILMS_BY_GENRE`
+  GET_FILMS_BY_GENRE: `GET_FILMS_BY_GENRE`,
+  SET_FEED_LIMIT: `SET_FEED_LIMIT`
 };
 
 const ActionCreator = {
@@ -26,7 +30,12 @@ const ActionCreator = {
   getFilmsByGenre: (filter) => ({
     type: ActionType.GET_FILMS_BY_GENRE,
     payload: filter
+  }),
+  setFeedLimit: (limit) => ({
+    type: ActionType.SET_FEED_LIMIT,
+    payload: limit
   })
+
 };
 
 const reducer = (state = initialState, action) => {
@@ -47,6 +56,12 @@ const reducer = (state = initialState, action) => {
 
       return extend(state, {
         films: films.filter((item)=>item.genre === currentGenre),
+      });
+    case ActionType.SET_FEED_LIMIT:
+      const offset = action.payload;
+
+      return extend(state, {
+        feedLimit: state.feedLimit + offset,
       });
     default:
       return state;

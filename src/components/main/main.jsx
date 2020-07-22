@@ -1,12 +1,19 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import {useSelector} from "react-redux";
 import {Feed} from '../feed/feed';
 import {GenresList} from '../genres-list/genres-list';
+import {ShowMore} from '../show-more/show-more';
 
-import {FilmPropTypes} from '../../types/film-prop-types';
+const DEFAULT_LIMIT = 8;
 
-export const Main = ({promoItem, onCardTitleClick, films, genres, onGenreClick, currentGenre}) => {
+export const Main = () => {
+  const films = useSelector((state) => state.films);
+  const promoItem = films[0];
   const {title, genre, releaseYear, poster, thumbnail} = promoItem;
+
+  const feedLimit = useSelector((state) => state.feedLimit) || DEFAULT_LIMIT;
+
+  const canShowMore = feedLimit < films.length;
 
   return <>
     <section className="movie-card">
@@ -76,20 +83,16 @@ export const Main = ({promoItem, onCardTitleClick, films, genres, onGenreClick, 
 
         <GenresList
           films={films}
-          genres={genres}
-          currentGenre={currentGenre}
-          onGenreClick={onGenreClick}
         />
 
         <Feed
-          films={films}
-          onCardTitleClick={onCardTitleClick}
           className="catalog__movies-list"
+          limit={feedLimit}
         />
 
-        <div className="catalog__more">
-          <button className="catalog__button" type="button">Show more</button>
-        </div>
+        { canShowMore && <ShowMore
+          offset={feedLimit}
+        /> }
       </section>
 
       <footer className="page-footer">
@@ -107,19 +110,4 @@ export const Main = ({promoItem, onCardTitleClick, films, genres, onGenreClick, 
       </footer>
     </div>
   </>;
-};
-
-Main.propTypes = {
-  // массив данных с фильмами
-  films: PropTypes.arrayOf(PropTypes.shape(FilmPropTypes)),
-  // список доступных жанров
-  genres: PropTypes.arrayOf(PropTypes.string),
-  // промо документ
-  promoItem: PropTypes.shape(FilmPropTypes).isRequired,
-  // обработчик клика по заголовку карточки
-  onCardTitleClick: PropTypes.func.isRequired,
-  // Обработчик клика по жанру
-  onGenreClick: PropTypes.func,
-  // текущий выбранный жанр
-  currentGenre: PropTypes.string
 };

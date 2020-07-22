@@ -1,22 +1,22 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import configureMockStore from "redux-mock-store";
+import {ShowMore} from './show-more';
 import {Provider} from "react-redux";
+import configureMockStore from "redux-mock-store";
 
-import {App} from './app';
-import {testFilms, testGenres} from '../../utils/test.utils';
+const testLimit = 1;
 
 const mockStore = configureMockStore();
 
-it(`App renders correctly`, () => {
-  const store = mockStore({
-    films: testFilms,
-    genres: testGenres
-  });
+it(`Main renders correctly`, () => {
+  const store = mockStore({});
+
   const tree = renderer
     .create(
         <Provider store={store}>
-          <App />
+          <ShowMore
+            offset={testLimit}
+          />
         </Provider>
     )
     .toJSON();

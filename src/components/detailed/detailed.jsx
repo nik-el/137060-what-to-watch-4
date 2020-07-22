@@ -1,14 +1,15 @@
 import React, {useState} from 'react';
-import PropTypes from 'prop-types';
 import {useParams} from 'react-router-dom';
-import {FilmPropTypes} from "../../types/film-prop-types";
+import {useSelector} from "react-redux";
 
 import {Tabs} from '../tabs/tabs';
 import {Feed} from "../feed/feed";
 
 const DETAILED_TABS = [`Overview`, `Details`, `Reviews`];
 
-export const Detailed = React.memo(function Detailed({films, onCardTitleClick}) {
+export const Detailed = React.memo(function Detailed() {
+  const films = useSelector((state) => state.films);
+
   const {id} = useParams();
   const [currentTab, setActiveTab] = useState(DETAILED_TABS[0]);
 
@@ -242,11 +243,7 @@ export const Detailed = React.memo(function Detailed({films, onCardTitleClick}) 
       <section className="catalog catalog--like-this">
         <h2 className="catalog__title">More like this</h2>
 
-        <Feed
-          films={films}
-          onCardTitleClick={onCardTitleClick}
-          className="catalog__movies-list"
-        />
+        <Feed className="catalog__movies-list"/>
       </section>
 
       <footer className="page-footer">
@@ -265,8 +262,3 @@ export const Detailed = React.memo(function Detailed({films, onCardTitleClick}) 
     </div>
   </>;
 });
-
-Detailed.propTypes = {
-  films: PropTypes.arrayOf(PropTypes.shape(FilmPropTypes)),
-  onCardTitleClick: PropTypes.func
-};

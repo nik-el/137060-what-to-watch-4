@@ -1,18 +1,20 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {Card} from '../card/card';
-import {FilmPropTypes} from "../../types/film-prop-types";
+import {useSelector} from "react-redux";
 
-export const Feed = React.memo(function Feed({films, onCardTitleClick, className}) {
+export const Feed = React.memo(function Feed({limit, className}) {
+  const films = useSelector((state) => state.films);
   const [activeCard, setActiveCard] = useState(null);
+
+  const limitFilms = films.slice(0, limit);
 
   return (
     <div className={className}>
-      { films.map((film) =>
+      { limitFilms.map((film) =>
         (
           <Card
             onCardMouseEnter={setActiveCard}
-            onCardTitleClick={onCardTitleClick}
             key={film.id}
             isActive={activeCard && activeCard.id === film.id}
             film={film}
@@ -24,9 +26,7 @@ export const Feed = React.memo(function Feed({films, onCardTitleClick, className
 });
 
 Feed.propTypes = {
-  // массив данных с фильмами
-  films: PropTypes.arrayOf(PropTypes.shape(FilmPropTypes)),
-  // обработчик клика по заголовку карточки
-  onCardTitleClick: PropTypes.func.isRequired,
+  // сколько показывать карточек
+  limit: PropTypes.number,
   className: PropTypes.string
 };
