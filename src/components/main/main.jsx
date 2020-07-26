@@ -3,22 +3,30 @@ import {useSelector} from "react-redux";
 import {Feed} from '../feed/feed';
 import {GenresList} from '../genres-list/genres-list';
 import {ShowMore} from '../show-more/show-more';
+import {getFilms, getFilmsLoadingState} from "../../reducer/data/selectors";
+import {getFeedLimit} from "../../reducer/view/selectors";
 
 const DEFAULT_LIMIT = 8;
 
 export const Main = () => {
-  const films = useSelector((state) => state.films);
+  const isFilmsLoading = useSelector(getFilmsLoadingState);
+  const films = useSelector(getFilms);
   const promoItem = films[0];
-  const {title, genre, releaseYear, poster, thumbnail} = promoItem;
-
-  const feedLimit = useSelector((state) => state.feedLimit) || DEFAULT_LIMIT;
+  const feedLimit = useSelector(getFeedLimit || DEFAULT_LIMIT);
 
   const canShowMore = feedLimit < films.length;
+
+
+  if (isFilmsLoading) {
+    return <div>Загружаемся...</div>;
+  } else if (!films.length) {
+    return <div>Нет данных для отображения</div>;
+  }
 
   return <>
     <section className="movie-card">
       <div className="movie-card__bg">
-        <img src={thumbnail} alt="The Grand Budapest Hotel"/>
+        <img src={promoItem.thumbnail} alt="The Grand Budapest Hotel"/>
       </div>
 
       <h1 className="visually-hidden">WTW</h1>
@@ -42,7 +50,7 @@ export const Main = () => {
       <div className="movie-card__wrap">
         <div className="movie-card__info">
           <div className="movie-card__poster">
-            <img src={poster}
+            <img src={promoItem.poster}
               alt="The Grand Budapest Hotel poster"
               width="218"
               height="327"
@@ -51,11 +59,11 @@ export const Main = () => {
 
           <div className="movie-card__desc">
             <h2 className="movie-card__title">
-              {title}
+              {promoItem.title}
             </h2>
             <p className="movie-card__meta">
-              <span className="movie-card__genre">{genre}</span>
-              <span className="movie-card__year">{releaseYear}</span>
+              <span className="movie-card__genre">{promoItem.genre}</span>
+              <span className="movie-card__year">{promoItem.releaseYear}</span>
             </p>
 
             <div className="movie-card__buttons">

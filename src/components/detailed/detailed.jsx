@@ -4,11 +4,12 @@ import {useSelector} from "react-redux";
 
 import {Tabs} from '../tabs/tabs';
 import {Feed} from "../feed/feed";
+import {getFilms} from '../../reducer/data/selectors';
 
 const DETAILED_TABS = [`Overview`, `Details`, `Reviews`];
 
 export const Detailed = React.memo(function Detailed() {
-  const films = useSelector((state) => state.films);
+  const films = useSelector(getFilms);
 
   const {id} = useParams();
   const [currentTab, setActiveTab] = useState(DETAILED_TABS[0]);
@@ -23,7 +24,7 @@ export const Detailed = React.memo(function Detailed() {
     description,
     rating,
     ratingCount,
-    directors,
+    director,
     starring
   } = film;
 
@@ -51,7 +52,7 @@ export const Detailed = React.memo(function Detailed() {
 
         <div className="movie-card__text">
           <p>{description}</p>
-          <p className="movie-card__director"><strong>Director: {directors[0]}</strong></p>
+          <p className="movie-card__director"><strong>Director: {director}</strong></p>
           <p className="movie-card__starring"><strong>Starring: {starring[0]}</strong></p>
         </div>
   </>);

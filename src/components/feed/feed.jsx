@@ -2,9 +2,10 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {Card} from '../card/card';
 import {useSelector} from "react-redux";
+import {getFilms} from '../../reducer/data/selectors';
 
 export const Feed = React.memo(function Feed({limit, className}) {
-  const films = useSelector((state) => state.films);
+  const films = useSelector(getFilms);
   const [activeCard, setActiveCard] = useState(null);
 
   const limitFilms = films.slice(0, limit);

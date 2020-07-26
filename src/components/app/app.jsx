@@ -13,7 +13,7 @@ export const App = React.memo(function App() {
     <Router>
       <Switch>
         <Route exact path="/">
-          <Main/>;
+          <Main/>
         </Route>
         <Route path="/detailed/:id">
           <Detailed/>

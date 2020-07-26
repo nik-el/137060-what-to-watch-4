@@ -2,7 +2,9 @@ import React from 'react';
 import {useSelector, useDispatch} from "react-redux";
 
 import {capitalize} from '../../utils/capitalize.utils';
-import {ActionCreator} from "../../reducer";
+import {ActionCreator} from '../../reducer/data/data';
+import {getGenres} from '../../reducer/data/selectors';
+import {getCurrentGenre} from '../../reducer/view/selectors';
 
 const DEFAULT_GENRE = null;
 
@@ -15,8 +17,8 @@ export const GenresList = React.memo(function GenresList() {
     dispatch(ActionCreator.getFilmsByGenre(genre));
   };
 
-  const currentGenre = useSelector((state) => state.currentGenre);
-  const genres = useSelector((state) => state.genres);
+  const currentGenre = useSelector(getCurrentGenre);
+  const genres = useSelector(getGenres);
 
   const getGenreClass = (genre) => (
     `catalog__genres-item` + (currentGenre === genre ? ` catalog__genres-item--active` : ``)
