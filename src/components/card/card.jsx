@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useCallback} from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 
@@ -11,24 +11,24 @@ import {ActionCreator} from "../../reducer";
 const VIDEO_DELAY = 1000;
 
 export const Card = React.memo(function Card({film, onCardMouseEnter}) {
-  const {title, thumbnail, preview} = film;
+  const {title, thumbnail, preview, genre} = film;
 
   const dispatch = useDispatch();
   const [isShowPlayer, setShowPlayer] = useState(false);
   const [timerId, setTimerId] = useState(null);
 
-  const handleCardClick = () => {
-    dispatch(ActionCreator.setFilter(film.genre));
-    dispatch(ActionCreator.getFilmsByGenre(film.genre));
-  };
+  const handleCardClick = useCallback(() => {
+    dispatch(ActionCreator.setFilter(genre));
+    dispatch(ActionCreator.getFilmsByGenre(genre));
+  }, [genre]);
 
-  const handleCardMouseEnter = () => {
+  const handleCardMouseEnter = useCallback(() => {
     onCardMouseEnter(film);
     const playId = setTimeout(() => {
       setShowPlayer(true);
     }, VIDEO_DELAY);
     setTimerId(playId);
-  };
+  }, [film]);
 
   const handleCardMouseLeave = () => {
     onCardMouseEnter(null);
