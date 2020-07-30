@@ -2,7 +2,7 @@ import React from 'react';
 import {useSelector, useDispatch} from "react-redux";
 
 import {capitalize} from '../../utils/capitalize.utils';
-import {ActionCreator} from '../../reducer/data/data';
+import {ActionCreator} from '../../reducer/view/actions';
 import {getGenres} from '../../reducer/data/selectors';
 import {getCurrentGenre} from '../../reducer/view/selectors';
 
@@ -13,8 +13,7 @@ export const GenresList = React.memo(function GenresList() {
 
   const handleGenreClick = (event, genre) => {
     event.preventDefault();
-    dispatch(ActionCreator.setFilter(genre));
-    dispatch(ActionCreator.getFilmsByGenre(genre));
+    dispatch(ActionCreator.setGenre(genre));
   };
 
   const currentGenre = useSelector(getCurrentGenre);

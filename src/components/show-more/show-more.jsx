@@ -2,7 +2,7 @@ import React, {useCallback} from 'react';
 import PropTypes from 'prop-types';
 import {useDispatch} from "react-redux";
 
-import {ActionCreator} from "../../reducer/view/view";
+import {ActionCreator} from "../../reducer/view";
 
 export const ShowMore = React.memo(function ShowMore({offset}) {
   const dispatch = useDispatch();

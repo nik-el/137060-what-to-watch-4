@@ -1,14 +1,10 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {Card} from '../card/card';
-import {useSelector} from "react-redux";
-import {getFilms} from '../../reducer/data/selectors';
 
-export const Feed = React.memo(function Feed({limit, className}) {
-  const films = useSelector(getFilms);
+export const Feed = React.memo(function Feed({currentFilms, limit, className}) {
   const [activeCard, setActiveCard] = useState(null);
-
-  const limitFilms = films.slice(0, limit);
+  const limitFilms = currentFilms.slice(0, limit);
 
   return (
     <div className={className}>
@@ -27,7 +23,7 @@ export const Feed = React.memo(function Feed({limit, className}) {
 });
 
 Feed.propTypes = {
-  // сколько показывать карточек
+  currentFilms: PropTypes.arrayOf(PropTypes.object),
   limit: PropTypes.number,
   className: PropTypes.string
 };

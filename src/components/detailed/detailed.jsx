@@ -1,20 +1,25 @@
 import React, {useState} from 'react';
 import {useParams} from 'react-router-dom';
-import {useSelector} from "react-redux";
 
 import {Tabs} from '../tabs/tabs';
 import {Feed} from "../feed/feed";
-import {getFilms} from '../../reducer/data/selectors';
+import PropTypes from "prop-types";
 
 const DETAILED_TABS = [`Overview`, `Details`, `Reviews`];
 
-export const Detailed = React.memo(function Detailed() {
-  const films = useSelector(getFilms);
-
+export const Detailed = React.memo(function Detailed({currentFilms}) {
   const {id} = useParams();
   const [currentTab, setActiveTab] = useState(DETAILED_TABS[0]);
+  let currentFilm = currentFilms[0];
 
-  const film = films.find((item) => item.id === id);
+  const filteredFilm = currentFilms.filter((item) => {
+    if (item.id === id) {
+      currentFilm = item;
+      return false;
+    }
+    return true;
+  });
+
   const {
     title,
     genre,
@@ -26,7 +31,7 @@ export const Detailed = React.memo(function Detailed() {
     ratingCount,
     director,
     starring
-  } = film;
+  } = currentFilm;
 
   const getInfoElByTab = (tab) => {
     switch (tab) {
@@ -244,7 +249,10 @@ export const Detailed = React.memo(function Detailed() {
       <section className="catalog catalog--like-this">
         <h2 className="catalog__title">More like this</h2>
 
-        <Feed className="catalog__movies-list"/>
+        <Feed
+          currentFilms={filteredFilm}
+          className="catalog__movies-list"
+        />
       </section>
 
       <footer className="page-footer">
@@ -263,3 +271,8 @@ export const Detailed = React.memo(function Detailed() {
     </div>
   </>;
 });
+
+
+Detailed.propTypes = {
+  currentFilms: PropTypes.arrayOf(PropTypes.object),
+};

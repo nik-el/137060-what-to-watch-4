@@ -4,24 +4,42 @@ import {Feed} from '../feed/feed';
 import {GenresList} from '../genres-list/genres-list';
 import {ShowMore} from '../show-more/show-more';
 import {getFilms, getFilmsLoadingState} from "../../reducer/data/selectors";
+import {AuthorizationStatus} from "../../reducer/user/enum";
+import {getAuth} from "../../reducer/user/selectors";
 import {getFeedLimit} from "../../reducer/view/selectors";
+import {Link} from "react-router-dom";
+import PropTypes from "prop-types";
 
 const DEFAULT_LIMIT = 8;
 
-export const Main = () => {
+export const Main = ({currentFilms}) => {
   const isFilmsLoading = useSelector(getFilmsLoadingState);
+  const isAuth = (useSelector(getAuth) === AuthorizationStatus.AUTH);
   const films = useSelector(getFilms);
   const promoItem = films[0];
   const feedLimit = useSelector(getFeedLimit || DEFAULT_LIMIT);
 
-  const canShowMore = feedLimit < films.length;
-
+  const canShowMore = feedLimit < currentFilms.length;
 
   if (isFilmsLoading) {
     return <div>Загружаемся...</div>;
   } else if (!films.length) {
     return <div>Нет данных для отображения</div>;
   }
+
+  const signInEl =
+    <div className="user-block">
+      <Link className="small-movie-card__link" to={`/sign-page`}>
+        Sign in
+      </Link>
+    </div>;
+
+  const userEl =
+    <div className="user-block">
+      <div className="user-block__avatar">
+        <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
+      </div>
+    </div>;
 
   return <>
     <section className="movie-card">
@@ -40,11 +58,8 @@ export const Main = () => {
           </a>
         </div>
 
-        <div className="user-block">
-          <div className="user-block__avatar">
-            <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
-          </div>
-        </div>
+        { isAuth ? userEl : signInEl}
+
       </header>
 
       <div className="movie-card__wrap">
@@ -89,12 +104,11 @@ export const Main = () => {
       <section className="catalog">
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-        <GenresList
-          films={films}
-        />
+        <GenresList />
 
         <Feed
           className="catalog__movies-list"
+          currentFilms={currentFilms}
           limit={feedLimit}
         />
 
@@ -118,4 +132,10 @@ export const Main = () => {
       </footer>
     </div>
   </>;
+};
+
+Main.propTypes = {
+  currentFilms: PropTypes.arrayOf(PropTypes.object),
+  // на сколько еще увеличиваем кол-во видимых элементов
+  offset: PropTypes.number.isRequired
 };
