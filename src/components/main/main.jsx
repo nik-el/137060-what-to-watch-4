@@ -136,6 +136,4 @@ export const Main = ({currentFilms}) => {
 
 Main.propTypes = {
   currentFilms: PropTypes.arrayOf(PropTypes.object),
-  // на сколько еще увеличиваем кол-во видимых элементов
-  offset: PropTypes.number.isRequired
 };

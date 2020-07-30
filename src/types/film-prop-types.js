@@ -6,7 +6,7 @@ export const FilmPropTypes = {
   // жанр фильма
   genre: PropTypes.string.isRequired,
   // год выпуска
-  releaseYear: PropTypes.string.isRequired,
+  releaseYear: PropTypes.number.isRequired,
   // ссылка на изображение
   thumbnail: PropTypes.string.isRequired,
   // уникальный id
@@ -14,11 +14,11 @@ export const FilmPropTypes = {
   // описание фильма
   description: PropTypes.string.isRequired,
   // оценка фильма
-  rating: PropTypes.string.isRequired,
+  rating: PropTypes.number.isRequired,
   // кол-во отзывов
-  ratingCount: PropTypes.string.isRequired,
+  ratingCount: PropTypes.number.isRequired,
   // режиссеры
-  director: PropTypes.string.isRequired,
+  director: PropTypes.string,
   // звезды
-  starring: PropTypes.string.isRequired,
+  starring: PropTypes.array,
 };
