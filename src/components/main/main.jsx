@@ -1,13 +1,13 @@
 import React from 'react';
 import {useSelector} from "react-redux";
 import {Feed} from '../feed/feed';
+import {UserBlock} from '../user-block/user-block';
 import {GenresList} from '../genres-list/genres-list';
 import {ShowMore} from '../show-more/show-more';
 import {getFilms, getFilmsLoadingState} from "../../reducer/data/selectors";
 import {AuthorizationStatus} from "../../reducer/user/enum";
 import {getAuth} from "../../reducer/user/selectors";
 import {getFeedLimit} from "../../reducer/view/selectors";
-import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
 
 const DEFAULT_LIMIT = 8;
@@ -27,20 +27,6 @@ export const Main = ({currentFilms}) => {
     return <div>Нет данных для отображения</div>;
   }
 
-  const signInEl =
-    <div className="user-block">
-      <Link className="small-movie-card__link" to={`/sign-page`}>
-        Sign in
-      </Link>
-    </div>;
-
-  const userEl =
-    <div className="user-block">
-      <div className="user-block__avatar">
-        <img src="img/avatar.jpg" alt="User avatar" width="63" height="63"/>
-      </div>
-    </div>;
-
   return <>
     <section className="movie-card">
       <div className="movie-card__bg">
@@ -58,7 +44,7 @@ export const Main = ({currentFilms}) => {
           </a>
         </div>
 
-        { isAuth ? userEl : signInEl}
+        <UserBlock isAuth={isAuth} />
 
       </header>
 

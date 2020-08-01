@@ -4,16 +4,6 @@ const getGenresFromFilms = (films) => {
   return [...genres];
 };
 
-const ActionType = {
-  SET_GENRES: `SET_GENRES`,
-};
-const ActionCreator = {
-  setGenres: (films) => ({
-    type: ActionType.SET_GENRES,
-    payload: getGenresFromFilms(films)
-  })
-};
-
 const ActionTypeAsync = {
   FILMS_REQUEST: `FILMS_REQUEST`,
   FILMS_SUCCESS: `FILMS_SUCCESS`,
@@ -25,7 +15,10 @@ const ActionCreatorAsync = {
   }),
   filmsSuccess: (films) => ({
     type: ActionTypeAsync.FILMS_SUCCESS,
-    payload: films
+    payload: {
+      films,
+      genres: getGenresFromFilms(films)
+    }
   }),
   filmsFailure: (error) => ({
     type: ActionTypeAsync.FILMS_FAILURE,
@@ -34,8 +27,6 @@ const ActionCreatorAsync = {
 };
 
 export {
-  ActionType,
   ActionTypeAsync,
-  ActionCreator,
   ActionCreatorAsync
 };

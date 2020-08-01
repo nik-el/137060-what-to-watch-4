@@ -7,8 +7,8 @@ const Operation = {
       .then(() => {
         dispatch(ActionCreator.setAuth(AuthorizationStatus.AUTH));
       })
-      .catch((err) => {
-        throw err;
+      .catch(() => {
+        dispatch(ActionCreator.setAuth(AuthorizationStatus.NO_AUTH));
       });
   },
   login: (email, password) => (dispatch, getState, api) => {
@@ -18,6 +18,9 @@ const Operation = {
     })
       .then(() => {
         dispatch(ActionCreator.setAuth(AuthorizationStatus.AUTH));
+      })
+      .catch(() => {
+        dispatch(ActionCreator.setAuth(AuthorizationStatus.NO_AUTH));
       });
   },
 };

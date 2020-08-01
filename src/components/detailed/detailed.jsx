@@ -12,7 +12,7 @@ export const Detailed = React.memo(function Detailed({currentFilms}) {
   const [currentTab, setActiveTab] = useState(DETAILED_TABS[0]);
   let currentFilm = currentFilms[0];
 
-  const filteredFilm = currentFilms.filter((item) => {
+  const filteredFilms = currentFilms.filter((item) => {
     if (item.id === id) {
       currentFilm = item;
       return false;
@@ -250,7 +250,7 @@ export const Detailed = React.memo(function Detailed({currentFilms}) {
         <h2 className="catalog__title">More like this</h2>
 
         <Feed
-          currentFilms={filteredFilm}
+          currentFilms={filteredFilms}
           className="catalog__movies-list"
         />
       </section>

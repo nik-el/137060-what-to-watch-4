@@ -1,29 +1,26 @@
-import React, {useCallback, useState, useEffect} from 'react';
+import React, {useCallback, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {Operation as UserOperation} from "../../reducer/user";
 import {AuthorizationStatus} from '../../reducer/user/enum';
 import {getAuth} from "../../reducer/user/selectors";
-import {useHistory} from "react-router-dom";
+import {Redirect} from "react-router-dom";
 
 export const SignIn = React.memo(function SignIn() {
   const isAuth = (useSelector(getAuth) === AuthorizationStatus.AUTH);
 
   const dispatch = useDispatch();
-  const history = useHistory();
 
   const [email, setEmail] = useState(``);
   const [password, setPassword] = useState(``);
-
-  useEffect(() => {
-    if (isAuth) {
-      history.push(`/`);
-    }
-  }, [isAuth]);
 
   const handleSignInClick = useCallback((event) => {
     event.preventDefault();
     dispatch(UserOperation.login(email, password));
   }, [email, password]);
+
+  if (isAuth) {
+    return <Redirect to='/' />;
+  }
 
   return (
     <div className="user-page">

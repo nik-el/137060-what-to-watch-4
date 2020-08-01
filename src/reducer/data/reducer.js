@@ -1,5 +1,5 @@
 import {extend} from "../../utils/extend.utils";
-import {ActionType, ActionTypeAsync} from "./actions";
+import {ActionTypeAsync} from "./actions";
 
 const initialState = {
   films: [],
@@ -14,20 +14,16 @@ export const reducer = (state = initialState, action) => {
         loadingFilmsData: true,
       });
     case ActionTypeAsync.FILMS_SUCCESS:
-      const films = action.payload;
+      const {films, genres} = action.payload;
       return extend(state, {
         films,
+        genres,
         loadingFilmsData: false
       });
     case ActionTypeAsync.FILMS_FAILURE:
       return extend(state, {
         films: [],
         loadingFilmsData: false
-      });
-    case ActionType.SET_GENRES:
-      const genres = action.payload;
-      return extend(state, {
-        genres,
       });
     default:
       return state;

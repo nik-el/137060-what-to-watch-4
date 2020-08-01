@@ -1,4 +1,4 @@
-import {ActionCreator, ActionCreatorAsync} from './actions';
+import {ActionCreatorAsync} from './actions';
 import {filmAdapter} from '../../adapters/films';
 
 const Operation = {
@@ -8,7 +8,6 @@ const Operation = {
       .then((response) => {
         const adaptedFilms = response.data.map((item) => filmAdapter(item));
         dispatch(ActionCreatorAsync.filmsSuccess(adaptedFilms));
-        dispatch(ActionCreator.setGenres(adaptedFilms));
       }).catch(function (error) {
         dispatch(ActionCreatorAsync.filmsFailure(error));
       });
