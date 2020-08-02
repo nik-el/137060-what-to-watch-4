@@ -5,8 +5,8 @@ import {
   Switch,
 } from 'react-router-dom';
 
-import {Main} from '../main/main';
 import {Detailed} from '../detailed/detailed';
+import {Main} from '../main/main';
 
 export const App = React.memo(function App() {
   return (
