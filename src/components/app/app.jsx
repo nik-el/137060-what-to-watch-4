@@ -14,6 +14,7 @@ import {Operation as UserOperation} from "../../reducer/user";
 import {getFilms} from "../../reducer/data/selectors";
 import {getFilmsByGenre} from "../../utils/get-films-by-genre.utils";
 import {getCurrentGenre} from "../../reducer/view/selectors";
+import {AddReview} from "../add-review/add-review";
 
 export const App = React.memo(function App() {
   const dispatch = useDispatch();
@@ -41,6 +42,11 @@ export const App = React.memo(function App() {
         </Route>
         <Route path="/detailed/:id">
           <Detailed
+            currentFilms={currentFilms}
+          />
+        </Route>
+        <Route path="/review/:id">
+          <AddReview
             currentFilms={currentFilms}
           />
         </Route>

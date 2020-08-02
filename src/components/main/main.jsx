@@ -30,7 +30,7 @@ export const Main = ({currentFilms}) => {
   return <>
     <section className="movie-card">
       <div className="movie-card__bg">
-        <img src={promoItem.thumbnail} alt="The Grand Budapest Hotel"/>
+        <img src={promoItem.bgImage} alt="The Grand Budapest Hotel"/>
       </div>
 
       <h1 className="visually-hidden">WTW</h1>

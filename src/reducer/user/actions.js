@@ -3,9 +3,9 @@ const ActionType = {
 };
 
 const ActionCreator = {
-  setAuth: (auth) => ({
+  setAuth: (authData) => ({
     type: ActionType.SET_AUTH,
-    payload: auth
+    payload: authData
   }),
 };
 

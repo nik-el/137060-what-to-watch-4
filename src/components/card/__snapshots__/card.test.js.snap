@@ -10,9 +10,9 @@ exports[`Card renders correctly 1`] = `
     className="small-movie-card__image"
   >
     <img
-      alt="Test title"
+      alt="Test title 1"
       height="175"
-      src="https://picsum.photos/id/0"
+      src="https://picsum.photos/id/1"
       width="280"
     />
   </div>
@@ -22,10 +22,10 @@ exports[`Card renders correctly 1`] = `
   >
     <a
       className="small-movie-card__link"
-      href="/detailed/0"
+      href="/detailed/1"
       onClick={[Function]}
     >
-      Test title
+      Test title 1
     </a>
   </h3>
 </article>

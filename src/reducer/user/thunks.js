@@ -1,14 +1,13 @@
 import {ActionCreator} from "./actions";
-import {AuthorizationStatus} from './enum';
 
 const Operation = {
   checkAuth: () => (dispatch, getState, api) => {
     return api.get(`/login`)
-      .then(() => {
-        dispatch(ActionCreator.setAuth(AuthorizationStatus.AUTH));
+      .then((response) => {
+        dispatch(ActionCreator.setAuth(response.data));
       })
       .catch(() => {
-        dispatch(ActionCreator.setAuth(AuthorizationStatus.NO_AUTH));
+        dispatch(ActionCreator.setAuth());
       });
   },
   login: (email, password) => (dispatch, getState, api) => {
@@ -16,11 +15,11 @@ const Operation = {
       email,
       password,
     })
-      .then(() => {
-        dispatch(ActionCreator.setAuth(AuthorizationStatus.AUTH));
+      .then((response) => {
+        dispatch(ActionCreator.setAuth(response.data));
       })
       .catch(() => {
-        dispatch(ActionCreator.setAuth(AuthorizationStatus.NO_AUTH));
+        dispatch(ActionCreator.setAuth());
       });
   },
 };

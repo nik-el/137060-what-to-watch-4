@@ -1,7 +1,10 @@
 import {extend} from "../../utils/extend.utils";
 import {ActionTypeAsync} from "./actions";
 
+const REST_API = `https://4.react.pages.academy`;
+
 const initialState = {
+  restApi: REST_API,
   films: [],
   loadingFilmsData: false,
   genres: [],
