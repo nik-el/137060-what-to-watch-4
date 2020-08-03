@@ -4,6 +4,11 @@ exports[`Detailed renders correctly 1`] = `
 Array [
   <section
     className="movie-card movie-card--full"
+    style={
+      Object {
+        "backgroundColor": "#FFF",
+      }
+    }
   >
     <div
       className="movie-card__hero"
@@ -38,7 +43,9 @@ Array [
             </span>
             <span
               className="movie-card__year"
-            />
+            >
+              2000
+            </span>
           </p>
           <div
             className="movie-card__buttons"
@@ -79,7 +86,8 @@ Array [
             </button>
             <a
               className="btn movie-card__button"
-              href="add-review.html"
+              href="/review/1"
+              onClick={[Function]}
             >
               Add review
             </a>
@@ -99,7 +107,7 @@ Array [
           <img
             alt="Test title 1"
             height="327"
-            src="https://picsum.photos/id/2"
+            src="https://picsum.photos/id/1"
             width="218"
           />
         </div>
@@ -153,7 +161,7 @@ Array [
             <div
               className="movie-rating__score"
             >
-              5,5
+              5.5
             </div>
             <p
               className="movie-rating__meta"
@@ -161,7 +169,7 @@ Array [
               <span
                 className="movie-rating__level"
               >
-                Very good
+                Good
               </span>
               <span
                 className="movie-rating__count"
@@ -190,7 +198,7 @@ Array [
             >
               <strong>
                 Starring: 
-                Test Star 1
+                Test Star 1, Test Star 2
               </strong>
             </p>
           </div>
@@ -212,34 +220,6 @@ Array [
       <div
         className="catalog__movies-list"
       >
-        <article
-          className="small-movie-card catalog__movies-card"
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-          >
-            <img
-              alt="Test title 1"
-              height="175"
-              src="https://picsum.photos/id/1"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-            onClick={[Function]}
-          >
-            <a
-              className="small-movie-card__link"
-              href="/detailed/1"
-              onClick={[Function]}
-            >
-              Test title 1
-            </a>
-          </h3>
-        </article>
         <article
           className="small-movie-card catalog__movies-card"
           onMouseEnter={[Function]}

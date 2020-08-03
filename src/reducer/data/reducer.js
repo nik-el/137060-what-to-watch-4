@@ -26,6 +26,7 @@ export const reducer = (state = initialState, action) => {
     case ActionTypeAsync.FILMS_FAILURE:
       return extend(state, {
         films: [],
+        genres: [],
         loadingFilmsData: false
       });
     default:

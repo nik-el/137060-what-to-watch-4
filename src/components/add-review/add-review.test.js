@@ -4,16 +4,14 @@ import {MemoryRouter, Route} from "react-router-dom";
 import {Provider} from 'react-redux';
 import configureMockStore from "redux-mock-store";
 
-import {testFilms} from '../../utils/test.utils';
+import {testFilms, testStore} from '../../utils/test.utils';
 import {AddReview} from "./add-review";
 
 const currentTestFilmId = testFilms[0].id;
 const mockStore = configureMockStore();
 
-it(`Detailed renders correctly`, () => {
-  const store = mockStore({
-    films: testFilms
-  });
+it(`AddReview renders correctly`, () => {
+  const store = mockStore(testStore);
 
   const tree = renderer
     .create(
@@ -21,7 +19,7 @@ it(`Detailed renders correctly`, () => {
           <MemoryRouter initialEntries={[`detailed/${currentTestFilmId}`]}>
             <Route path={`detailed/:id`}>
               <AddReview
-                currentFilm={testFilms}
+                currentFilms={testFilms}
               />
             </Route>
           </MemoryRouter>

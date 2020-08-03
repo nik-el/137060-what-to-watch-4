@@ -1,7 +1,10 @@
 import {reducer} from "./reducer";
 import {Operation} from './thunks';
+import {ActionType, ActionCreator} from './actions';
 
 export {
   reducer,
-  Operation
+  Operation,
+  ActionType,
+  ActionCreator
 };

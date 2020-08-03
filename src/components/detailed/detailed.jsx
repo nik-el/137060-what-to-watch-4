@@ -9,6 +9,7 @@ import {getComments} from "../../reducer/review/selectors";
 import {getFormattedDate} from '../../utils/date.utils';
 import {getRating} from "../../utils/get-rating.utils";
 import {getDuration} from "../../utils/get-duration.utils";
+import {getEvenArray, getOddArray} from "../../utils/parity.utils";
 
 const DETAILED_TABS = [`Overview`, `Details`, `Reviews`];
 
@@ -111,7 +112,28 @@ export const Detailed = React.memo(function Detailed({currentFilms}) {
     <div className="movie-card__reviews movie-card__row">
       <div className="movie-card__reviews-col">
         {
-          comments.map((item) => {
+          getOddArray(comments).map((item) => {
+            return <div
+              key={item.id}
+              className="review"
+            >
+              <blockquote className="review__quote">
+                <p className="review__text">{item.comment}</p>
+
+                <footer className="review__details">
+                  <cite className="review__author">{item.user.name}</cite>
+                  <time className="review__date" dateTime={item.date}>{getFormattedDate(item.date)}</time>
+                </footer>
+              </blockquote>
+
+              <div className="review__rating">{item.rating}</div>
+            </div>;
+          })
+        }
+      </div>
+      <div className="movie-card__reviews-col">
+        {
+          getEvenArray(comments).map((item) => {
             return <div
               key={item.id}
               className="review"

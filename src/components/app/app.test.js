@@ -4,19 +4,18 @@ import configureMockStore from "redux-mock-store";
 import {Provider} from "react-redux";
 
 import {App} from './app';
-import {testFilms, testGenres} from '../../utils/test.utils';
+import {testFilms, testStore} from '../../utils/test.utils';
 
 const mockStore = configureMockStore();
 
 it(`App renders correctly`, () => {
-  const store = mockStore({
-    films: testFilms,
-    genres: testGenres
-  });
+  const store = mockStore(testStore);
   const tree = renderer
     .create(
         <Provider store={store}>
-          <App />
+          <App
+            currentFilms={testFilms}
+          />
         </Provider>
     )
     .toJSON();
