@@ -4,6 +4,7 @@ import {Operation as UserOperation} from "../../reducer/user";
 import {AuthorizationStatus} from '../../reducer/user/enum';
 import {getAuth} from "../../reducer/user/selectors";
 import {Redirect} from "react-router-dom";
+import {Logo} from "../logo/logo";
 
 export const SignIn = React.memo(function SignIn() {
   const isAuth = (useSelector(getAuth) === AuthorizationStatus.AUTH);
@@ -25,14 +26,7 @@ export const SignIn = React.memo(function SignIn() {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
-        <div className="logo">
-          <a href="main.html" className="logo__link">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </a>
-        </div>
-
+        <Logo />
         <h1 className="page-title user-page__title">Sign in</h1>
       </header>
 
@@ -72,7 +66,7 @@ export const SignIn = React.memo(function SignIn() {
             <button
               className="sign-in__btn"
               type="submit"
-              onClick={(event) => handleSignInClick(event)}
+              onClick={handleSignInClick}
             >
               Sign in
             </button>
@@ -81,14 +75,9 @@ export const SignIn = React.memo(function SignIn() {
       </div>
 
       <footer className="page-footer">
-        <div className="logo">
-          <a href="main.html" className="logo__link logo__link--light">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </a>
-        </div>
-
+        <Logo
+          alignRight
+        />
         <div className="copyright">
           <p>© 2019 What to watch Ltd.</p>
         </div>

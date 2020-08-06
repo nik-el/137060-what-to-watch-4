@@ -32,8 +32,7 @@ exports[`AddReview renders correctly 1`] = `
         className="logo"
       >
         <a
-          className="logo__link"
-          href="main.html"
+          className=" logo__link--light"
         >
           <span
             className="logo__letter logo__letter--1"
@@ -111,6 +110,7 @@ exports[`AddReview renders correctly 1`] = `
     <form
       action="#"
       className="add-review__form"
+      onSubmit={[Function]}
     >
       <div
         className="rating"
@@ -119,12 +119,9 @@ exports[`AddReview renders correctly 1`] = `
           className="rating__stars"
         >
           <input
-            checked={false}
             className="rating__input"
-            disabled={false}
             id="star-1"
             name="rating"
-            onChange={[Function]}
             type="radio"
             value={1}
           />
@@ -136,12 +133,9 @@ exports[`AddReview renders correctly 1`] = `
             1
           </label>
           <input
-            checked={false}
             className="rating__input"
-            disabled={false}
             id="star-2"
             name="rating"
-            onChange={[Function]}
             type="radio"
             value={2}
           />
@@ -153,12 +147,9 @@ exports[`AddReview renders correctly 1`] = `
             2
           </label>
           <input
-            checked={false}
             className="rating__input"
-            disabled={false}
             id="star-3"
             name="rating"
-            onChange={[Function]}
             type="radio"
             value={3}
           />
@@ -170,12 +161,9 @@ exports[`AddReview renders correctly 1`] = `
             3
           </label>
           <input
-            checked={false}
             className="rating__input"
-            disabled={false}
             id="star-4"
             name="rating"
-            onChange={[Function]}
             type="radio"
             value={4}
           />
@@ -187,12 +175,9 @@ exports[`AddReview renders correctly 1`] = `
             4
           </label>
           <input
-            checked={false}
             className="rating__input"
-            disabled={false}
             id="star-5"
             name="rating"
-            onChange={[Function]}
             type="radio"
             value={5}
           />
@@ -215,10 +200,8 @@ exports[`AddReview renders correctly 1`] = `
       >
         <textarea
           className="add-review__textarea"
-          disabled={false}
           id="review-text"
           name="review-text"
-          onChange={[Function]}
           placeholder="Review text"
         />
         <div
@@ -227,7 +210,6 @@ exports[`AddReview renders correctly 1`] = `
           <button
             className="add-review__btn"
             disabled={false}
-            onClick={[Function]}
             type="submit"
           >
             Post

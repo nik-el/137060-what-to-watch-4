@@ -7,6 +7,7 @@ import {getLoadingAddingCommentStatus} from "../../reducer/review/selectors";
 import {getUser} from "../../reducer/user/selectors";
 import {getRestApi} from "../../reducer/data/selectors";
 import PropTypes from "prop-types";
+import {Logo} from "../logo/logo";
 
 const RATING_VALUES = [1, 2, 3, 4, 5];
 const MIN_COMMENT = 50;
@@ -24,30 +25,24 @@ export const AddReview = React.memo(function AddReview({currentFilms}) {
   const {id} = useParams();
   const currentFilm = getFilmById(currentFilms, id);
 
+  const formRef = React.createRef();
+
   const restApi = useSelector(getRestApi);
-  const [rating, setRating] = useState(null);
   const [ratingError, setRatingError] = useState(false);
   const [commentError, setCommentError] = useState(false);
-  const [comment, setComment] = useState(``);
   const isAdding = useSelector(getLoadingAddingCommentStatus);
   const userData = useSelector(getUser);
 
   const avatarUrl = restApi + userData.avatar_url;
 
-  const handleRatingChange = useCallback((value) => {
-    setRating(value);
-    setRatingError(false);
-  }, []);
+  const handleSubmit = useCallback((e) => {
+    e.preventDefault();
+    const form = formRef.current;
+    const formData = new FormData(form);
 
-  const handleCommentChange = useCallback((value) => {
-    if (value && value.length >= MIN_COMMENT && value.length <= MAX_COMMENT) {
-      setCommentError(false);
-    }
-    setComment(value);
-  }, []);
+    const rating = formData.get(`rating`);
+    const comment = formData.get(`review-text`);
 
-  const handlePostClick = useCallback((event) => {
-    event.preventDefault();
     if (!rating) {
       setRatingError(true);
       return;
@@ -57,9 +52,8 @@ export const AddReview = React.memo(function AddReview({currentFilms}) {
       return;
     }
 
-
     dispatch(ReviewOperation.addComment(id, {rating, comment}));
-  }, [id, rating, comment, ratingError, commentError]);
+  }, [id, ratingError, commentError, formRef]);
 
 
   return <section
@@ -74,13 +68,7 @@ export const AddReview = React.memo(function AddReview({currentFilms}) {
       <h1 className="visually-hidden">WTW</h1>
 
       <header className="page-header">
-        <div className="logo">
-          <a href="main.html" className="logo__link">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </a>
-        </div>
+        <Logo />
 
         <nav className="breadcrumbs">
           <ul className="breadcrumbs__list">
@@ -107,7 +95,9 @@ export const AddReview = React.memo(function AddReview({currentFilms}) {
     </div>
 
     <div className="add-review">
-      <form action="#" className="add-review__form">
+      <form action="#" className="add-review__form"
+        ref={formRef}
+        onSubmit={handleSubmit}>
         <div className="rating">
           <div className="rating__stars">
             {
@@ -118,10 +108,7 @@ export const AddReview = React.memo(function AddReview({currentFilms}) {
                     key={value}
                     id={`star-` + value} type="radio"
                     name="rating"
-                    checked={rating === value}
-                    onChange={() => handleRatingChange(value)}
                     value={value}
-                    disabled={isAdding}
                   />
                   <label className="rating__label" htmlFor={`star-` + value}>
                     Rating {value}
@@ -137,8 +124,6 @@ export const AddReview = React.memo(function AddReview({currentFilms}) {
           style={{'backgroundColor': currentFilm.bgColor}}
         >
           <textarea
-            onChange={(e) => handleCommentChange(e.target.value)}
-            disabled={isAdding}
             className="add-review__textarea"
             name="review-text"
             id="review-text"
@@ -149,13 +134,10 @@ export const AddReview = React.memo(function AddReview({currentFilms}) {
               Put a rating
             </span> }
             { commentError && <span style={warningMsgStyle}>
-              The comment length must be between 50 and 400 characters (current: {comment.length})
+              The comment length must be between 50 and 400 characters
             </span> }
             <button
               disabled={isAdding}
-              onClick={(e)=> {
-                handlePostClick(e);
-              }}
               className="add-review__btn"
               type="submit">
               Post

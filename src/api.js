@@ -7,5 +7,15 @@ export const createAPI = () => {
     withCredentials: true,
   });
 
+  const onSuccess = (response) => {
+    return response;
+  };
+
+  const onFail = (error) => {
+    throw error;
+  };
+
+  api.interceptors.response.use(onSuccess, onFail);
+
   return api;
 };

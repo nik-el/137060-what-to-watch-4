@@ -10,6 +10,7 @@ import {getFormattedDate} from '../../utils/date.utils';
 import {getRating} from "../../utils/get-rating.utils";
 import {getDuration} from "../../utils/get-duration.utils";
 import {getEvenArray, getOddArray} from "../../utils/parity.utils";
+import {Logo} from "../logo/logo";
 
 const DETAILED_TABS = [`Overview`, `Details`, `Reviews`];
 
@@ -229,13 +230,9 @@ export const Detailed = React.memo(function Detailed({currentFilms}) {
       </section>
 
       <footer className="page-footer">
-        <div className="logo">
-          <a href="main.html" className="logo__link logo__link--light">
-            <span className="logo__letter logo__letter--1">W</span>
-            <span className="logo__letter logo__letter--2">T</span>
-            <span className="logo__letter logo__letter--3">W</span>
-          </a>
-        </div>
+        <Logo
+          alignRight
+        />
 
         <div className="copyright">
           <p>© 2019 What to watch Ltd.</p>
