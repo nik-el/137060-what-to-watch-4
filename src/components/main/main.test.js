@@ -6,21 +6,20 @@ import configureMockStore from "redux-mock-store";
 
 import {Main} from './main';
 
-import {testFilms, testGenres} from '../../utils/test.utils';
+import {testStore, testFilms} from '../../utils/test.utils';
 
 const mockStore = configureMockStore();
 
 it(`Main renders correctly`, () => {
-  const store = mockStore({
-    films: testFilms,
-    genres: testGenres
-  });
+  const store = mockStore(testStore);
 
   const tree = renderer
     .create(
         <Provider store={store}>
           <Router>
-            <Main />
+            <Main
+              currentFilms={testFilms}
+            />
           </Router>
         </Provider>
     )

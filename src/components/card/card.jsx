@@ -6,7 +6,7 @@ import {FilmPropTypes} from "../../types/film-prop-types";
 
 import {Player} from '../player/player';
 import {useDispatch} from "react-redux";
-import {ActionCreator} from "../../reducer";
+import {ActionCreator as ActionCreatorView} from "../../reducer/view/actions";
 
 const VIDEO_DELAY = 1000;
 
@@ -18,8 +18,7 @@ export const Card = React.memo(function Card({film, onCardMouseEnter}) {
   const [timerId, setTimerId] = useState(null);
 
   const handleCardClick = useCallback(() => {
-    dispatch(ActionCreator.setFilter(genre));
-    dispatch(ActionCreator.getFilmsByGenre(genre));
+    dispatch(ActionCreatorView.setGenre(genre));
   }, [genre]);
 
   const handleCardMouseEnter = useCallback(() => {

@@ -5,22 +5,21 @@ import {Provider} from 'react-redux';
 import configureMockStore from "redux-mock-store";
 
 import {Detailed} from './detailed';
-import {testFilms} from '../../utils/test.utils';
+import {testFilms, testStore} from '../../utils/test.utils';
 
 const currentTestFilmId = testFilms[0].id;
 const mockStore = configureMockStore();
 
 it(`Detailed renders correctly`, () => {
-  const store = mockStore({
-    films: testFilms
-  });
+  const store = mockStore(testStore);
 
   const tree = renderer
     .create(
         <Provider store={store}>
-          <MemoryRouter initialEntries={[`detailed/${currentTestFilmId}`]}>
-            <Route path={`detailed/:id`}>
+          <MemoryRouter initialEntries={[`review/${currentTestFilmId}`]}>
+            <Route path={`review/:id`}>
               <Detailed
+                currentFilms={testFilms}
                 match={{params: {id: currentTestFilmId}}}
               />
             </Route>

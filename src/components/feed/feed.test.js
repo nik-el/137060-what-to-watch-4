@@ -5,20 +5,19 @@ import {BrowserRouter as Router} from 'react-router-dom';
 import configureMockStore from 'redux-mock-store';
 
 import {Feed} from './feed';
-import {testFilms} from '../../utils/test.utils';
+import {testStore, testFilms} from '../../utils/test.utils';
 
 const mockStore = configureMockStore();
 
 it(`Feed renders correctly`, () => {
-  const store = mockStore({
-    films: testFilms
-  });
+  const store = mockStore(testStore);
 
   const tree = renderer
     .create(
         <Provider store={store}>
           <Router>
             <Feed
+              currentFilms={testFilms}
               films={testFilms}
             />
           </Router>

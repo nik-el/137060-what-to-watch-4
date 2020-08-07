@@ -3,6 +3,6 @@
 exports[`Player renders correctly 1`] = `
 <video
   className="small-player"
-  src="http://test_preview.com"
+  src="https://picsum.photos/id/1"
 />
 `;

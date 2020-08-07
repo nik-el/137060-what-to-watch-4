@@ -71,7 +71,7 @@ Array [
           <img
             alt="The Grand Budapest Hotel poster"
             height="327"
-            src="https://picsum.photos/id/2"
+            src="https://picsum.photos/id/1"
             width="218"
           />
         </div>
@@ -93,7 +93,9 @@ Array [
             </span>
             <span
               className="movie-card__year"
-            />
+            >
+              2000
+            </span>
           </p>
           <div
             className="movie-card__buttons"
@@ -163,7 +165,7 @@ Array [
           </a>
         </li>
         <li
-          className="catalog__genres-item"
+          className="catalog__genres-item catalog__genres-item--active"
         >
           <a
             className="catalog__genres-link"
