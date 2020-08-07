@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 
 export const Logo = React.memo(function Logo({alignRight}) {
-  const linkStyle = `logo__link` + alignRight ? ` logo__link--light` : ``;
+  const linkStyle = `logo__link` + (alignRight ? ` logo__link--light` : ``);
 
   return <div className="logo">
     <a className={linkStyle}>

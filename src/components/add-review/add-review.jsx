@@ -8,8 +8,9 @@ import {getUser} from "../../reducer/user/selectors";
 import {getRestApi} from "../../reducer/data/selectors";
 import PropTypes from "prop-types";
 import {Logo} from "../logo/logo";
+import {Rating} from "../rating/rating";
+import {TextReview} from "../text-review/text-review";
 
-const RATING_VALUES = [1, 2, 3, 4, 5];
 const MIN_COMMENT = 50;
 const MAX_COMMENT = 400;
 
@@ -98,52 +99,22 @@ export const AddReview = React.memo(function AddReview({currentFilms}) {
       <form action="#" className="add-review__form"
         ref={formRef}
         onSubmit={handleSubmit}>
-        <div className="rating">
-          <div className="rating__stars">
-            {
-              RATING_VALUES.map((value) => (
-                <React.Fragment key={value}>
-                  <input
-                    className="rating__input"
-                    key={value}
-                    id={`star-` + value} type="radio"
-                    name="rating"
-                    value={value}
-                  />
-                  <label className="rating__label" htmlFor={`star-` + value}>
-                    Rating {value}
-                  </label>
-                </React.Fragment>
-              ))
-            }
-          </div>
-        </div>
+        <Rating />
+        <TextReview />
 
-        <div
-          className="add-review__text"
-          style={{'backgroundColor': currentFilm.bgColor}}
-        >
-          <textarea
-            className="add-review__textarea"
-            name="review-text"
-            id="review-text"
-            placeholder="Review text"
-          />
-          <div className="add-review__submit">
-            { ratingError && <span style={warningMsgStyle}>
+        <div className="add-review__submit">
+          { ratingError && <span style={warningMsgStyle}>
               Put a rating
-            </span> }
-            { commentError && <span style={warningMsgStyle}>
+          </span> }
+          { commentError && <span style={warningMsgStyle}>
               The comment length must be between 50 and 400 characters
-            </span> }
-            <button
-              disabled={isAdding}
-              className="add-review__btn"
-              type="submit">
-              Post
-            </button>
-          </div>
-
+          </span> }
+          <button
+            disabled={isAdding}
+            className="add-review__btn"
+            type="submit">
+            Post
+          </button>
         </div>
       </form>
     </div>
