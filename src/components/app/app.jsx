@@ -6,8 +6,8 @@ import {
 } from 'react-router-dom';
 
 import {Main} from '../main/main';
-import {Detailed} from '../detailed/detailed';
 import {SignIn} from '../sign-in/sign-in';
+import {Detailed} from '../detailed/detailed';
 import {useDispatch, useSelector} from "react-redux";
 import {Operation as DataOperation} from "../../reducer/data";
 import {Operation as UserOperation} from "../../reducer/user";
