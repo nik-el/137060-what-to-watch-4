@@ -16,6 +16,7 @@ import {getFilmsByGenre} from "../../utils/get-films-by-genre.utils";
 import {getCurrentGenre} from "../../reducer/view/selectors";
 import {AddReview} from "../add-review/add-review";
 import history from '../../history';
+import {FullPlayer} from "../full-player/full-player";
 
 export const App = React.memo(function App() {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ export const App = React.memo(function App() {
 
   useEffect(() => {
     dispatch(DataOperation.loadFilms());
+    dispatch(DataOperation.getPromoFilm());
     dispatch(UserOperation.checkAuth());
   }, []);
 
@@ -48,6 +50,11 @@ export const App = React.memo(function App() {
         </Route>
         <Route path="/review/:id">
           <AddReview
+            currentFilms={currentFilms}
+          />
+        </Route>
+        <Route path="/player/:id">
+          <FullPlayer
             currentFilms={currentFilms}
           />
         </Route>

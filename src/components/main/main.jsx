@@ -4,26 +4,35 @@ import {Feed} from '../feed/feed';
 import {UserBlock} from '../user-block/user-block';
 import {GenresList} from '../genres-list/genres-list';
 import {ShowMore} from '../show-more/show-more';
-import {getFilms, getFilmsLoadingState, getRestApi} from "../../reducer/data/selectors";
+import {
+  getFilms,
+  getFilmsLoadingState,
+  getPromoId,
+  getPromoLoadingState,
+  getRestApi
+} from "../../reducer/data/selectors";
 import {AuthorizationStatus} from "../../reducer/user/enum";
 import {getAuth, getUser} from "../../reducer/user/selectors";
 import {getFeedLimit} from "../../reducer/view/selectors";
 import PropTypes from "prop-types";
 import {Logo} from "../logo/logo";
 import {FavoriteButton} from "../favorite-button/favorite-button";
+import {Link} from "react-router-dom";
 
 const DEFAULT_LIMIT = 8;
 
 export const Main = ({currentFilms}) => {
   const userData = useSelector(getUser);
   const restApi = useSelector(getRestApi);
+  const promoId = useSelector(getPromoId) || 0;
 
   const isFilmsLoading = useSelector(getFilmsLoadingState);
+  const isPromoLoading = useSelector(getPromoLoadingState);
   const isAuth = (useSelector(getAuth) === AuthorizationStatus.AUTH);
   const films = useSelector(getFilms);
   const feedLimit = useSelector(getFeedLimit || DEFAULT_LIMIT);
 
-  const promoItem = films[0];
+  const promoItem = films.find((item) => item.id === promoId) || films[0];
 
   const canShowMore = feedLimit < currentFilms.length;
 
@@ -33,7 +42,7 @@ export const Main = ({currentFilms}) => {
   }
 
 
-  if (isFilmsLoading) {
+  if (isFilmsLoading || isPromoLoading) {
     return <div>Загружаемся...</div>;
   } else if (!films.length) {
     return <div>Нет данных для отображения</div>;
@@ -50,10 +59,10 @@ export const Main = ({currentFilms}) => {
       <header className="page-header movie-card__head">
         <Logo />
 
-        <UserBlock
+        {userData && <UserBlock
           isAuth={isAuth}
           avatarUrl={avatarUrl}
-        />
+        /> }
 
       </header>
 
@@ -77,12 +86,14 @@ export const Main = ({currentFilms}) => {
             </p>
 
             <div className="movie-card__buttons">
-              <button className="btn btn--play movie-card__button" type="button">
+              <Link
+                to={`/player/${promoItem.id}`}
+                className="btn btn--play movie-card__button" type="button">
                 <svg viewBox="0 0 19 19" width="19" height="19">
-                  <use xlinkHref="#play-s"></use>
+                  <use xlinkHref="#play-s"/>
                 </svg>
                 <span>Play</span>
-              </button>
+              </Link>
               <FavoriteButton
                 id={promoItem.id}
                 isFavorite={promoItem.isFavorite}

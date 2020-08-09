@@ -6,7 +6,9 @@ const REST_API = `https://4.react.pages.academy`;
 const initialState = {
   restApi: REST_API,
   films: [],
+  promoId: null,
   loadingFilmsData: false,
+  loadingPromoData: false,
   genres: [],
 };
 
@@ -34,6 +36,21 @@ export const reducer = (state = initialState, action) => {
         films: [],
         genres: [],
         loadingFilmsData: false
+      });
+    case ActionTypeAsync.PROMO_REQUEST:
+      return extend(state, {
+        loadingPromoData: true,
+      });
+    case ActionTypeAsync.PROMO_SUCCESS:
+      const id = action.payload;
+      return extend(state, {
+        promoId: id,
+        loadingPromoData: false
+      });
+    case ActionTypeAsync.PROMO_FAILURE:
+      return extend(state, {
+        promoId: null,
+        loadingPromoData: false
       });
     default:
       return state;

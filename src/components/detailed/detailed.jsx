@@ -8,7 +8,7 @@ import {Operation as ReviewOperation} from "../../reducer/review";
 import {getComments} from "../../reducer/review/selectors";
 import {getFormattedDate} from '../../utils/date.utils';
 import {getRating} from "../../utils/get-rating.utils";
-import {getDuration} from "../../utils/get-duration.utils";
+import {geFormatDuration} from "../../utils/get-duration.utils";
 import {getEvenArray, getOddArray} from "../../utils/parity.utils";
 import {Logo} from "../logo/logo";
 import {FavoriteButton} from "../favorite-button/favorite-button";
@@ -97,7 +97,7 @@ export const Detailed = React.memo(function Detailed({currentFilms}) {
       <div className="movie-card__text-col">
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Run Time</strong>
-          <span className="movie-card__details-value">{getDuration(runTime)}</span>
+          <span className="movie-card__details-value">{geFormatDuration(runTime)}</span>
         </p>
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Genre</strong>
@@ -177,12 +177,14 @@ export const Detailed = React.memo(function Detailed({currentFilms}) {
             </p>
 
             <div className="movie-card__buttons">
-              <button className="btn btn--play movie-card__button" type="button">
+              <Link
+                to={`/player/${id}`}
+                className="btn btn--play movie-card__button" type="button">
                 <svg viewBox="0 0 19 19" width="19" height="19">
                   <use xlinkHref="#play-s"/>
                 </svg>
                 <span>Play</span>
-              </button>
+              </Link>
               <FavoriteButton
                 id={id}
                 isFavorite={isFavorite}

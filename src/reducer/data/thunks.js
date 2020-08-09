@@ -12,6 +12,15 @@ const Operation = {
         dispatch(ActionCreatorAsync.filmsFailure(error));
       });
   },
+  getPromoFilm: () => (dispatch, getState, api) => {
+    dispatch(ActionCreatorAsync.promoRequest());
+    return api.get(`/films/promo`)
+      .then((response) => {
+        dispatch(ActionCreatorAsync.promoSuccess(response.data));
+      }).catch(function (error) {
+        dispatch(ActionCreatorAsync.promoFailure(error));
+      });
+  },
 };
 
 export {
