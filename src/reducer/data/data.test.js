@@ -13,7 +13,9 @@ it(`Reducer without additional parameters should return initial state`, () => {
     restApi: REST_API,
     films: [],
     loadingFilmsData: false,
-    genres: [],
+    loadingPromoData: false,
+    promoId: null,
+    genres: []
   });
 });
 

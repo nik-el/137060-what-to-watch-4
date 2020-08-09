@@ -15,6 +15,7 @@ export const filmAdapter = (film) => (
     id: String(film.id),
     preview: film.preview_video_link,
     runTime: film.run_time,
-    isFavorite: film.is_favorite
+    isFavorite: film.is_favorite,
+    video: film.video_link,
   }
 );

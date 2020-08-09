@@ -17,11 +17,13 @@ const ActionCreator = {
   })
 };
 
-
 const ActionTypeAsync = {
   FILMS_REQUEST: `FILMS_REQUEST`,
   FILMS_SUCCESS: `FILMS_SUCCESS`,
   FILMS_FAILURE: `FILMS_FAILURE`,
+  PROMO_REQUEST: `PROMO_REQUEST`,
+  PROMO_SUCCESS: `PROMO_SUCCESS`,
+  PROMO_FAILURE: `PROMO_FAILURE`,
 };
 const ActionCreatorAsync = {
   filmsRequest: () => ({
@@ -36,6 +38,17 @@ const ActionCreatorAsync = {
   }),
   filmsFailure: (error) => ({
     type: ActionTypeAsync.FILMS_FAILURE,
+    payload: error
+  }),
+  promoRequest: () => ({
+    type: ActionTypeAsync.PROMO_REQUEST,
+  }),
+  promoSuccess: (film) => ({
+    type: ActionTypeAsync.PROMO_SUCCESS,
+    payload: film.id
+  }),
+  promoFailure: (error) => ({
+    type: ActionTypeAsync.PROMO_FAILURE,
     payload: error
   })
 };

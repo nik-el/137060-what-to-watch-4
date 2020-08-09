@@ -5,6 +5,10 @@ export const Player = React.memo(function Player({forcePlay, previewSrc, autoPla
   const videoEl = useRef(null);
   const [isPlaying, setPlaying] = useState(false);
 
+  const smallPlayerStyle = {
+    width: `100%`
+  };
+
   useEffect(() => {
     if (!forcePlay && !isPlaying) {
       return;
@@ -25,6 +29,7 @@ export const Player = React.memo(function Player({forcePlay, previewSrc, autoPla
     src={previewSrc}
     autoPlay={autoPlay}
     muted={muted}
+    style={smallPlayerStyle}
     className={`small-player`}
   />;
 

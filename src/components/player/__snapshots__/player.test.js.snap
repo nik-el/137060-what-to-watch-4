@@ -4,5 +4,10 @@ exports[`Player renders correctly 1`] = `
 <video
   className="small-player"
   src="https://picsum.photos/id/1"
+  style={
+    Object {
+      "width": "100%",
+    }
+  }
 />
 `;
