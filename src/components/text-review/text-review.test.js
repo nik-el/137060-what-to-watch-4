@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 
 import {TextReview} from './text-review';
 
-it(`Rating renders correctly`, () => {
+it(`TextReview renders correctly`, () => {
   const tree = renderer
     .create(
         <TextReview />

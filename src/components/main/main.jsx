@@ -4,23 +4,34 @@ import {Feed} from '../feed/feed';
 import {UserBlock} from '../user-block/user-block';
 import {GenresList} from '../genres-list/genres-list';
 import {ShowMore} from '../show-more/show-more';
-import {getFilms, getFilmsLoadingState} from "../../reducer/data/selectors";
+import {getFilms, getFilmsLoadingState, getRestApi} from "../../reducer/data/selectors";
 import {AuthorizationStatus} from "../../reducer/user/enum";
-import {getAuth} from "../../reducer/user/selectors";
+import {getAuth, getUser} from "../../reducer/user/selectors";
 import {getFeedLimit} from "../../reducer/view/selectors";
 import PropTypes from "prop-types";
 import {Logo} from "../logo/logo";
+import {FavoriteButton} from "../favorite-button/favorite-button";
 
 const DEFAULT_LIMIT = 8;
 
 export const Main = ({currentFilms}) => {
+  const userData = useSelector(getUser);
+  const restApi = useSelector(getRestApi);
+
   const isFilmsLoading = useSelector(getFilmsLoadingState);
   const isAuth = (useSelector(getAuth) === AuthorizationStatus.AUTH);
   const films = useSelector(getFilms);
-  const promoItem = films[0];
   const feedLimit = useSelector(getFeedLimit || DEFAULT_LIMIT);
 
+  const promoItem = films[0];
+
   const canShowMore = feedLimit < currentFilms.length;
+
+  let avatarUrl;
+  if (userData) {
+    avatarUrl = restApi + userData.avatar_url;
+  }
+
 
   if (isFilmsLoading) {
     return <div>Загружаемся...</div>;
@@ -39,7 +50,10 @@ export const Main = ({currentFilms}) => {
       <header className="page-header movie-card__head">
         <Logo />
 
-        <UserBlock isAuth={isAuth} />
+        <UserBlock
+          isAuth={isAuth}
+          avatarUrl={avatarUrl}
+        />
 
       </header>
 
@@ -69,12 +83,10 @@ export const Main = ({currentFilms}) => {
                 </svg>
                 <span>Play</span>
               </button>
-              <button className="btn btn--list movie-card__button" type="button">
-                <svg viewBox="0 0 19 20" width="19" height="20">
-                  <use xlinkHref="#add"></use>
-                </svg>
-                <span>My list</span>
-              </button>
+              <FavoriteButton
+                id={promoItem.id}
+                isFavorite={promoItem.isFavorite}
+              />
             </div>
           </div>
         </div>

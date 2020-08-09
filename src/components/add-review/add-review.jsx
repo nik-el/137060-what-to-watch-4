@@ -10,6 +10,7 @@ import PropTypes from "prop-types";
 import {Logo} from "../logo/logo";
 import {Rating} from "../rating/rating";
 import {TextReview} from "../text-review/text-review";
+import {UserBlock} from "../user-block/user-block";
 
 const MIN_COMMENT = 50;
 const MAX_COMMENT = 400;
@@ -82,11 +83,10 @@ export const AddReview = React.memo(function AddReview({currentFilms}) {
           </ul>
         </nav>
 
-        <div className="user-block">
-          <div className="user-block__avatar">
-            <img src={avatarUrl} alt="User avatar" width="63" height="63"/>
-          </div>
-        </div>
+        <UserBlock
+          isAuth
+          avatarUrl={avatarUrl}
+        />
       </header>
 
       <div className="movie-card__poster movie-card__poster--small">

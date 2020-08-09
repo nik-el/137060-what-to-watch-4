@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Rating renders correctly 1`] = `
+exports[`TextReview renders correctly 1`] = `
 <div
   className="add-review__text"
 >
