@@ -1,8 +1,22 @@
+import {filmAdapter} from "../../adapters/films";
+
 const getGenresFromFilms = (films) => {
   const genres = new Set();
   films.forEach((film) => genres.add(film.genre));
   return [...genres];
 };
+
+const ActionType = {
+  UPDATE_FILM: `UPDATE_FILM`
+};
+
+const ActionCreator = {
+  updateFilm: (film) => ({
+    type: ActionType.UPDATE_FILM,
+    payload: filmAdapter(film)
+  })
+};
+
 
 const ActionTypeAsync = {
   FILMS_REQUEST: `FILMS_REQUEST`,
@@ -27,6 +41,8 @@ const ActionCreatorAsync = {
 };
 
 export {
+  ActionType,
+  ActionCreator,
   ActionTypeAsync,
   ActionCreatorAsync
 };

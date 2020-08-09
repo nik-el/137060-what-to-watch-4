@@ -1,4 +1,5 @@
 import {ActionCreatorAsync} from './actions';
+import history from "../../history";
 
 const Operation = {
   addComment: (id, review) => (dispatch, getState, api) => {
@@ -6,6 +7,7 @@ const Operation = {
     return api.post(`/comments/${id}`, review)
       .then((response) => {
         dispatch(ActionCreatorAsync.addCommentSuccess(response.data));
+        history.push(`/detailed/${id}`);
       }).catch(function (error) {
         dispatch(ActionCreatorAsync.addCommentFailure(error));
       });

@@ -1,5 +1,5 @@
 import {extend} from "../../utils/extend.utils";
-import {ActionTypeAsync} from "./actions";
+import {ActionTypeAsync, ActionType} from "./actions";
 
 const REST_API = `https://4.react.pages.academy`;
 
@@ -11,7 +11,13 @@ const initialState = {
 };
 
 export const reducer = (state = initialState, action) => {
+
   switch (action.type) {
+    case ActionType.UPDATE_FILM:
+      const newFilm = action.payload;
+      return extend(state, {
+        films: state.films.map((item) => (item.id === newFilm.id) ? newFilm : item)
+      });
     case ActionTypeAsync.FILMS_REQUEST:
       return extend(state, {
         loadingFilmsData: true,

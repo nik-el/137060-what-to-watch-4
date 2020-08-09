@@ -11,6 +11,7 @@ import {getRating} from "../../utils/get-rating.utils";
 import {getDuration} from "../../utils/get-duration.utils";
 import {getEvenArray, getOddArray} from "../../utils/parity.utils";
 import {Logo} from "../logo/logo";
+import {FavoriteButton} from "../favorite-button/favorite-button";
 
 const DETAILED_TABS = [`Overview`, `Details`, `Reviews`];
 
@@ -45,7 +46,8 @@ export const Detailed = React.memo(function Detailed({currentFilms}) {
     starring,
     bgImage,
     bgColor,
-    runTime
+    runTime,
+    isFavorite
   } = currentFilm;
 
   const getInfoElByTab = (tab) => {
@@ -181,12 +183,10 @@ export const Detailed = React.memo(function Detailed({currentFilms}) {
                 </svg>
                 <span>Play</span>
               </button>
-              <button className="btn btn--list movie-card__button" type="button">
-                <svg viewBox="0 0 19 20" width="19" height="20">
-                  <use xlinkHref="#add"/>
-                </svg>
-                <span>My list</span>
-              </button>
+              <FavoriteButton
+                id={id}
+                isFavorite={isFavorite}
+              />
               <Link className="btn movie-card__button" to={`/review/${currentFilm.id}`}>
                 Add review
               </Link>

@@ -1,8 +1,8 @@
 import React, {useEffect, useMemo} from 'react';
 import {
-  BrowserRouter as Router,
+  Router,
   Route,
-  Switch,
+  Switch
 } from 'react-router-dom';
 
 import {Main} from '../main/main';
@@ -15,6 +15,7 @@ import {getFilms} from "../../reducer/data/selectors";
 import {getFilmsByGenre} from "../../utils/get-films-by-genre.utils";
 import {getCurrentGenre} from "../../reducer/view/selectors";
 import {AddReview} from "../add-review/add-review";
+import history from '../../history';
 
 export const App = React.memo(function App() {
   const dispatch = useDispatch();
@@ -30,7 +31,7 @@ export const App = React.memo(function App() {
   }, []);
 
   return (
-    <Router>
+    <Router history={history}>
       <Switch>
         <Route path="/sign-page">
           <SignIn/>
