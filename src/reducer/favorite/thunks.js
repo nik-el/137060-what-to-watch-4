@@ -1,5 +1,6 @@
 import {ActionCreatorAsync} from './actions';
 import {ActionCreator} from "../data/actions";
+import {filmAdapter} from "../../adapters/films";
 
 const Operation = {
   setFavorite: (id, status) => (dispatch, getState, api) => {
@@ -15,7 +16,8 @@ const Operation = {
     dispatch(ActionCreatorAsync.getFavoritesRequest());
     return api.get(`/favorite`)
       .then((response) => {
-        dispatch(ActionCreatorAsync.getFavoritesSuccess(response.data));
+        const adaptedFilms = response.data.map((item) => filmAdapter(item));
+        dispatch(ActionCreatorAsync.getFavoritesSuccess(adaptedFilms));
       }).catch(function (error) {
         dispatch(ActionCreatorAsync.getFavoritesFailure(error));
       });

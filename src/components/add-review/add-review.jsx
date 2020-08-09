@@ -1,11 +1,11 @@
 import React, {useCallback, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import {useDispatch, useSelector} from "react-redux";
+import {Link} from 'react-router-dom';
 import {getFilmById} from '../../utils/get-film-by-id.utils';
 import {Operation as ReviewOperation} from "../../reducer/review/thunks";
 import {getLoadingAddingCommentStatus} from "../../reducer/review/selectors";
 import {getUser} from "../../reducer/user/selectors";
-import {getRestApi} from "../../reducer/data/selectors";
 import PropTypes from "prop-types";
 import {Logo} from "../logo/logo";
 import {Rating} from "../rating/rating";
@@ -29,13 +29,10 @@ export const AddReview = React.memo(function AddReview({currentFilms}) {
 
   const formRef = React.createRef();
 
-  const restApi = useSelector(getRestApi);
   const [ratingError, setRatingError] = useState(false);
   const [commentError, setCommentError] = useState(false);
   const isAdding = useSelector(getLoadingAddingCommentStatus);
   const userData = useSelector(getUser);
-
-  const avatarUrl = restApi + userData.avatar_url;
 
   const handleSubmit = useCallback((e) => {
     e.preventDefault();
@@ -75,7 +72,12 @@ export const AddReview = React.memo(function AddReview({currentFilms}) {
         <nav className="breadcrumbs">
           <ul className="breadcrumbs__list">
             <li className="breadcrumbs__item">
-              <a href="movie-page.html" className="breadcrumbs__link">The Grand Budapest Hotel</a>
+              <Link
+                to={`/detailed/${currentFilm.id}`}
+                className="breadcrumbs__link"
+              >
+                {currentFilm.title}
+              </Link>
             </li>
             <li className="breadcrumbs__item">
               <a className="breadcrumbs__link">Add review</a>
@@ -84,8 +86,7 @@ export const AddReview = React.memo(function AddReview({currentFilms}) {
         </nav>
 
         <UserBlock
-          isAuth
-          avatarUrl={avatarUrl}
+          userData={userData}
         />
       </header>
 

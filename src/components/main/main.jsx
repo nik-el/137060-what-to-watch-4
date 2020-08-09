@@ -8,11 +8,9 @@ import {
   getFilms,
   getFilmsLoadingState,
   getPromoId,
-  getPromoLoadingState,
-  getRestApi
+  getPromoLoadingState
 } from "../../reducer/data/selectors";
-import {AuthorizationStatus} from "../../reducer/user/enum";
-import {getAuth, getUser} from "../../reducer/user/selectors";
+import {getUser} from "../../reducer/user/selectors";
 import {getFeedLimit} from "../../reducer/view/selectors";
 import PropTypes from "prop-types";
 import {Logo} from "../logo/logo";
@@ -23,24 +21,15 @@ const DEFAULT_LIMIT = 8;
 
 export const Main = ({currentFilms}) => {
   const userData = useSelector(getUser);
-  const restApi = useSelector(getRestApi);
   const promoId = useSelector(getPromoId) || 0;
 
   const isFilmsLoading = useSelector(getFilmsLoadingState);
   const isPromoLoading = useSelector(getPromoLoadingState);
-  const isAuth = (useSelector(getAuth) === AuthorizationStatus.AUTH);
   const films = useSelector(getFilms);
   const feedLimit = useSelector(getFeedLimit || DEFAULT_LIMIT);
 
   const promoItem = films.find((item) => item.id === promoId) || films[0];
-
   const canShowMore = feedLimit < currentFilms.length;
-
-  let avatarUrl;
-  if (userData) {
-    avatarUrl = restApi + userData.avatar_url;
-  }
-
 
   if (isFilmsLoading || isPromoLoading) {
     return <div>Загружаемся...</div>;
@@ -59,10 +48,9 @@ export const Main = ({currentFilms}) => {
       <header className="page-header movie-card__head">
         <Logo />
 
-        {userData && <UserBlock
-          isAuth={isAuth}
-          avatarUrl={avatarUrl}
-        /> }
+        <UserBlock
+          userData={userData}
+        />
 
       </header>
 

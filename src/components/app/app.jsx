@@ -17,6 +17,8 @@ import {getCurrentGenre} from "../../reducer/view/selectors";
 import {AddReview} from "../add-review/add-review";
 import history from '../../history';
 import {FullPlayer} from "../full-player/full-player";
+import {MyList} from "../my-list/my-list";
+import {PrivateRoute} from "../../private-route/private-route";
 
 export const App = React.memo(function App() {
   const dispatch = useDispatch();
@@ -48,16 +50,27 @@ export const App = React.memo(function App() {
             currentFilms={currentFilms}
           />
         </Route>
-        <Route path="/review/:id">
-          <AddReview
-            currentFilms={currentFilms}
-          />
-        </Route>
+        <PrivateRoute
+          exact
+          path="/review/:id"
+          render={() => {
+            return <AddReview
+              currentFilms={currentFilms}
+            />;
+          }}
+        />
         <Route path="/player/:id">
           <FullPlayer
             currentFilms={currentFilms}
           />
         </Route>
+        <PrivateRoute
+          exact
+          path="/my-list"
+          render={() => {
+            return <MyList />;
+          }}
+        />
       </Switch>
     </Router>
   );

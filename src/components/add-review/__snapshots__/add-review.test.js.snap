@@ -33,6 +33,8 @@ exports[`AddReview renders correctly 1`] = `
       >
         <a
           className="logo__link"
+          href="/"
+          onClick={[Function]}
         >
           <span
             className="logo__letter logo__letter--1"
@@ -62,9 +64,10 @@ exports[`AddReview renders correctly 1`] = `
           >
             <a
               className="breadcrumbs__link"
-              href="movie-page.html"
+              href="/detailed/1"
+              onClick={[Function]}
             >
-              The Grand Budapest Hotel
+              Test title 1
             </a>
           </li>
           <li
@@ -78,8 +81,10 @@ exports[`AddReview renders correctly 1`] = `
           </li>
         </ul>
       </nav>
-      <div
+      <a
         className="user-block"
+        href="/my-list"
+        onClick={[Function]}
       >
         <div
           className="user-block__avatar"
@@ -91,7 +96,7 @@ exports[`AddReview renders correctly 1`] = `
             width="63"
           />
         </div>
-      </div>
+      </a>
     </header>
     <div
       className="movie-card__poster movie-card__poster--small"
