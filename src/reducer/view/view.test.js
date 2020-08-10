@@ -1,6 +1,6 @@
 import {reducer, ActionType} from "./index";
 
-const FEED_LIMIT = 4;
+const FEED_LIMIT = 8;
 
 it(`Reducer without additional parameters should return initial state`, () => {
   expect(reducer(void 0, {})).toEqual({

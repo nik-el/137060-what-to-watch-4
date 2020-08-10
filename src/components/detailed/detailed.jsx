@@ -12,11 +12,14 @@ import {geFormatDuration} from "../../utils/get-duration.utils";
 import {getEvenArray, getOddArray} from "../../utils/parity.utils";
 import {Logo} from "../logo/logo";
 import {FavoriteButton} from "../favorite-button/favorite-button";
+import {UserBlock} from "../user-block/user-block";
+import {getUser} from "../../reducer/user/selectors";
 
 const DETAILED_TABS = [`Overview`, `Details`, `Reviews`];
 
 export const Detailed = React.memo(function Detailed({currentFilms}) {
   const {id} = useParams();
+  const userData = useSelector(getUser);
   const [currentTab, setActiveTab] = useState(DETAILED_TABS[0]);
   const dispatch = useDispatch();
   const comments = useSelector(getComments);
@@ -167,6 +170,15 @@ export const Detailed = React.memo(function Detailed({currentFilms}) {
         <div className="movie-card__bg">
           <img src={bgImage} alt="The Grand Budapest Hotel"/>
         </div>
+
+        <header className="page-header movie-card__head">
+          <Logo />
+
+          <UserBlock
+            userData={userData}
+          />
+
+        </header>
 `
         <div className="movie-card__wrap">
           <div className="movie-card__desc">
@@ -189,7 +201,7 @@ export const Detailed = React.memo(function Detailed({currentFilms}) {
                 id={id}
                 isFavorite={isFavorite}
               />
-              <Link className="btn movie-card__button" to={`/review/${currentFilm.id}`}>
+              <Link className="btn movie-card__button" to={`/review/${id}`}>
                 Add review
               </Link>
             </div>

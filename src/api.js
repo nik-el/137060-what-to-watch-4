@@ -1,9 +1,5 @@
 import axios from 'axios';
 
-const Error = {
-  UNAUTHORIZED: 401
-};
-
 export const createAPI = () => {
   const api = axios.create({
     baseURL: `https://4.react.pages.academy/wtw`,
@@ -16,12 +12,6 @@ export const createAPI = () => {
   };
 
   const onFail = (error) => {
-    const {response} = error;
-
-    if (response.status === Error.UNAUTHORIZED) {
-      throw error;
-    }
-
     throw error;
   };
 

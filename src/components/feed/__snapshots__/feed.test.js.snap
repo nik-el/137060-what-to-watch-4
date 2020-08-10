@@ -4,6 +4,7 @@ exports[`Feed renders correctly 1`] = `
 <div>
   <article
     className="small-movie-card catalog__movies-card"
+    onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
@@ -32,6 +33,7 @@ exports[`Feed renders correctly 1`] = `
   </article>
   <article
     className="small-movie-card catalog__movies-card"
+    onClick={[Function]}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >

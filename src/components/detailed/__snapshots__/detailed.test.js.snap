@@ -21,6 +21,51 @@ Array [
           src="https://picsum.photos/id/1"
         />
       </div>
+      <header
+        className="page-header movie-card__head"
+      >
+        <div
+          className="logo"
+        >
+          <a
+            className="logo__link"
+            href="/"
+            onClick={[Function]}
+          >
+            <span
+              className="logo__letter logo__letter--1"
+            >
+              W
+            </span>
+            <span
+              className="logo__letter logo__letter--2"
+            >
+              T
+            </span>
+            <span
+              className="logo__letter logo__letter--3"
+            >
+              W
+            </span>
+          </a>
+        </div>
+        <a
+          className="user-block"
+          href="/my-list"
+          onClick={[Function]}
+        >
+          <div
+            className="user-block__avatar"
+          >
+            <img
+              alt="User avatar"
+              height="63"
+              src="test_api_urltest/1.png"
+              width="63"
+            />
+          </div>
+        </a>
+      </header>
       \`
       <div
         className="movie-card__wrap"
@@ -225,6 +270,7 @@ Array [
       >
         <article
           className="small-movie-card catalog__movies-card"
+          onClick={[Function]}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
