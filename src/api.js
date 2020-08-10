@@ -1,5 +1,4 @@
 import axios from 'axios';
-import history from './history';
 
 const Error = {
   UNAUTHORIZED: 401
@@ -20,8 +19,6 @@ export const createAPI = () => {
     const {response} = error;
 
     if (response.status === Error.UNAUTHORIZED) {
-      history.push(`/sign-page`);
-
       throw error;
     }
 

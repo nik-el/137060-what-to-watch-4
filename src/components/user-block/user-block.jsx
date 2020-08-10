@@ -1,8 +1,12 @@
 import React from 'react';
 import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
+import {useSelector} from "react-redux";
+import {getRestApi} from "../../reducer/data/selectors";
 
-export const UserBlock = React.memo(function SignIn({isAuth, avatarUrl}) {
+export const UserBlock = React.memo(function SignIn({userData}) {
+  const restApi = useSelector(getRestApi);
+
   const signInEl =
     <div className="user-block">
       <Link className="small-movie-card__link" to={`/sign-page`}>
@@ -10,17 +14,16 @@ export const UserBlock = React.memo(function SignIn({isAuth, avatarUrl}) {
       </Link>
     </div>;
 
-  const avatarEl =
-    <div className="user-block">
-      <div className="user-block__avatar">
-        <img src={avatarUrl} alt="User avatar" width="63" height="63"/>
-      </div>
-    </div>;
-
-  return isAuth ? avatarEl : signInEl;
+  return userData ? <Link
+    to={`/my-list`}
+    className="user-block"
+  >
+    <div className="user-block__avatar">
+      <img src={restApi + userData.avatar_url} alt="User avatar" width="63" height="63"/>
+    </div>
+  </Link> : signInEl;
 });
 
 UserBlock.propTypes = {
-  isAuth: PropTypes.bool,
-  avatarUrl: PropTypes.string.isRequired,
+  userData: PropTypes.object
 };
