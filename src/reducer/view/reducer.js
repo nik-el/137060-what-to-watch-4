@@ -1,7 +1,7 @@
 import {extend} from "../../utils/extend.utils";
 import {ActionType} from './actions';
 
-const FEED_LIMIT = 4;
+const FEED_LIMIT = 8;
 
 const initialState = {
   currentGenre: null,
