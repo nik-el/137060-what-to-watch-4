@@ -9,8 +9,20 @@ export const FilmPropTypes = {
   releaseYear: PropTypes.number.isRequired,
   // ссылка на изображение
   thumbnail: PropTypes.string.isRequired,
+  // ссылка на изображение
+  bgImage: PropTypes.string.isRequired,
+  // основной цвет фильма
+  bgColor: PropTypes.string.isRequired,
+  // ссылка  на постер
+  poster: PropTypes.string.isRequired,
+  // ссылка на превью
+  preview: PropTypes.string.isRequired,
+  // ссылка на видео
+  video: PropTypes.string.isRequired,
   // уникальный id
   id: PropTypes.string.isRequired,
+  // кол-во просмотров
+  runTime: PropTypes.number.isRequired,
   // описание фильма
   description: PropTypes.string.isRequired,
   // оценка фильма
@@ -18,7 +30,9 @@ export const FilmPropTypes = {
   // кол-во отзывов
   ratingCount: PropTypes.number.isRequired,
   // режиссеры
-  director: PropTypes.string,
+  director: PropTypes.string.isRequired,
   // звезды
-  starring: PropTypes.array,
+  starring: PropTypes.array.isRequired,
+  //  признак избранного
+  isFavorite: PropTypes.bool.isRequired,
 };

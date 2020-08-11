@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import {Card} from '../card/card';
+import {FilmPropTypes} from "../../types/film-prop-types";
 
 export const Feed = React.memo(function Feed({currentFilms, limit, className}) {
   const [activeCard, setActiveCard] = useState(null);
@@ -23,7 +24,7 @@ export const Feed = React.memo(function Feed({currentFilms, limit, className}) {
 });
 
 Feed.propTypes = {
-  currentFilms: PropTypes.arrayOf(PropTypes.object),
+  currentFilms: PropTypes.arrayOf(PropTypes.shape(FilmPropTypes)),
   limit: PropTypes.number,
   className: PropTypes.string
 };

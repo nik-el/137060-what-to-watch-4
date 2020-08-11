@@ -1,10 +1,11 @@
 import {ActionCreator} from "./actions";
+import {userDataAdapter} from "../../adapters/user";
 
 const Operation = {
   checkAuth: () => (dispatch, getState, api) => {
     return api.get(`/login`)
       .then((response) => {
-        dispatch(ActionCreator.setAuth(response.data));
+        dispatch(ActionCreator.setAuth(userDataAdapter(response.data)));
       })
       .catch(() => {
         dispatch(ActionCreator.setAuth());

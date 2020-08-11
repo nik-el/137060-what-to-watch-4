@@ -11,6 +11,7 @@ import {Logo} from "../logo/logo";
 import {Rating} from "../rating/rating";
 import {TextReview} from "../text-review/text-review";
 import {UserBlock} from "../user-block/user-block";
+import {FilmPropTypes} from "../../types/film-prop-types";
 
 const MIN_COMMENT = 50;
 const MAX_COMMENT = 400;
@@ -73,7 +74,7 @@ export const AddReview = React.memo(function AddReview({currentFilms}) {
           <ul className="breadcrumbs__list">
             <li className="breadcrumbs__item">
               <Link
-                to={`/detailed/${currentFilm.id}`}
+                to={`/films/${currentFilm.id}`}
                 className="breadcrumbs__link"
               >
                 {currentFilm.title}
@@ -125,5 +126,5 @@ export const AddReview = React.memo(function AddReview({currentFilms}) {
 });
 
 AddReview.propTypes = {
-  currentFilms: PropTypes.arrayOf(PropTypes.object)
+  currentFilms: PropTypes.arrayOf(PropTypes.shape(FilmPropTypes)),
 };

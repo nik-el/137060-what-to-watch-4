@@ -14,7 +14,9 @@ module.exports = {
     open: true,
     inline: true,
     port: 1337,
-    historyApiFallback: true
+    historyApiFallback: {
+      index: 'index.html'
+    }
   },
   module: {
     rules: [

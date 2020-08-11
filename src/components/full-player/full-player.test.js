@@ -10,7 +10,7 @@ it(`FullPlayer renders correctly`, () => {
   const tree = renderer
     .create(
         <MemoryRouter initialEntries={[`player/${currentTestFilmId}`]}>
-          <Route path={`detailed/:id`}>
+          <Route path={`player/:id`}>
             <FullPlayer
               currentFilms={testFilms}
             />

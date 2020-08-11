@@ -27,11 +27,6 @@ export const reducer = (state = initialState, action) => {
       return extend(state, {
         loadingSetFavorite: true,
       });
-    case ActionTypeAsync.SET_FAVORITE_SUCCESS:
-      return extend(state, {
-        loadingSetFavorite: false,
-        favorites: action.payload,
-      });
     case ActionTypeAsync.SET_FAVORITE_FAILURE:
       return extend(state, {
         loadingSetFavorite: false,

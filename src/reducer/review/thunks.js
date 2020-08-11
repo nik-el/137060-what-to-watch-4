@@ -7,7 +7,7 @@ const Operation = {
     return api.post(`/comments/${id}`, review)
       .then((response) => {
         dispatch(ActionCreatorAsync.addCommentSuccess(response.data));
-        history.push(`/detailed/${id}`);
+        history.push(`/films/${id}`);
       }).catch(function (error) {
         dispatch(ActionCreatorAsync.addCommentFailure(error));
       });

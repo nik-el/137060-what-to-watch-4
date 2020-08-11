@@ -23,7 +23,7 @@ exports[`Card renders correctly 1`] = `
   >
     <a
       className="small-movie-card__link"
-      href="/detailed/1"
+      href="/films/1"
       onClick={[Function]}
     >
       Test title 1

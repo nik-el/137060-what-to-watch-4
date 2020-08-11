@@ -19,7 +19,7 @@ export const Card = React.memo(function Card({film, onCardMouseEnter}) {
   const [timerId, setTimerId] = useState(null);
 
   const handleCardClick = useCallback(() => {
-    history.push(`/detailed/${id}`);
+    history.push(`/films/${id}`);
     dispatch(ActionCreatorView.setGenre(genre));
   }, [genre]);
 
@@ -55,7 +55,7 @@ export const Card = React.memo(function Card({film, onCardMouseEnter}) {
       className="small-movie-card__title"
       onClick={handleCardClick}
     >
-      <Link className="small-movie-card__link" to={`/detailed/${film.id}`}>
+      <Link className="small-movie-card__link" to={`/films/${film.id}`}>
         {title}
       </Link>
     </h3>

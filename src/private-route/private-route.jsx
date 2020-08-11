@@ -17,7 +17,7 @@ export const PrivateRoute = (props) => {
         return (
           isAuth
             ? render()
-            : <Redirect to={`/sign-page`} />
+            : <Redirect to={`/login`} />
         );
       }}
     />

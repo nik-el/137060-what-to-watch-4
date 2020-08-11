@@ -64,7 +64,7 @@ exports[`AddReview renders correctly 1`] = `
           >
             <a
               className="breadcrumbs__link"
-              href="/detailed/1"
+              href="/films/1"
               onClick={[Function]}
             >
               Test title 1
@@ -83,7 +83,7 @@ exports[`AddReview renders correctly 1`] = `
       </nav>
       <a
         className="user-block"
-        href="/my-list"
+        href="/mylist"
         onClick={[Function]}
       >
         <div

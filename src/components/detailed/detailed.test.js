@@ -17,7 +17,7 @@ it(`Detailed renders correctly`, () => {
     .create(
         <Provider store={store}>
           <MemoryRouter initialEntries={[`review/${currentTestFilmId}`]}>
-            <Route path={`review/:id`}>
+            <Route path={`films/:id/review`}>
               <Detailed
                 currentFilms={testFilms}
                 match={{params: {id: currentTestFilmId}}}

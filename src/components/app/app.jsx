@@ -11,7 +11,7 @@ import {Detailed} from '../detailed/detailed';
 import {useDispatch, useSelector} from "react-redux";
 import {Operation as DataOperation} from "../../reducer/data";
 import {Operation as UserOperation} from "../../reducer/user";
-import {getFilms} from "../../reducer/data/selectors";
+import {getFilms, getFilmsLoadingState, getPromoLoadingState} from "../../reducer/data/selectors";
 import {getFilmsByGenre} from "../../utils/get-films-by-genre.utils";
 import {getCurrentGenre} from "../../reducer/view/selectors";
 import {AddReview} from "../add-review/add-review";
@@ -22,6 +22,8 @@ import {PrivateRoute} from "../../private-route/private-route";
 
 export const App = React.memo(function App() {
   const dispatch = useDispatch();
+  const isFilmsLoading = useSelector(getFilmsLoadingState);
+  const isPromoLoading = useSelector(getPromoLoadingState);
 
   const films = useSelector(getFilms);
   const currentGenre = useSelector(getCurrentGenre);
@@ -34,10 +36,16 @@ export const App = React.memo(function App() {
     dispatch(UserOperation.checkAuth());
   }, []);
 
+  if (isFilmsLoading || isPromoLoading) {
+    return <div>Загружаемся...</div>;
+  } else if (!films.length) {
+    return <div>Нет данных для отображения</div>;
+  }
+
   return (
     <Router history={history}>
       <Switch>
-        <Route path="/sign-page">
+        <Route path="/login">
           <SignIn/>
         </Route>
         <Route exact path="/">
@@ -45,28 +53,28 @@ export const App = React.memo(function App() {
             currentFilms={currentFilms}
           />
         </Route>
-        <Route path="/detailed/:id">
+        <Route path="/films/:id" exact>
           <Detailed
             currentFilms={currentFilms}
           />
         </Route>
         <PrivateRoute
           exact
-          path="/review/:id"
+          path="/films/:id/review"
           render={() => {
             return <AddReview
               currentFilms={currentFilms}
             />;
           }}
         />
-        <Route path="/player/:id">
+        <Route path="/player/:id" exact>
           <FullPlayer
             currentFilms={currentFilms}
           />
         </Route>
         <PrivateRoute
           exact
-          path="/my-list"
+          path="/mylist"
           render={() => {
             return <MyList />;
           }}

@@ -48,7 +48,7 @@ Array [
       </div>
       <a
         className="user-block"
-        href="/my-list"
+        href="/mylist"
         onClick={[Function]}
       >
         <div
@@ -108,6 +108,11 @@ Array [
               className="btn btn--play movie-card__button"
               href="/player/1"
               onClick={[Function]}
+              style={
+                Object {
+                  "WebkitAppearance": "none",
+                }
+              }
               type="button"
             >
               <svg
@@ -219,7 +224,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="/detailed/1"
+              href="/films/1"
               onClick={[Function]}
             >
               Test title 1
@@ -248,7 +253,7 @@ Array [
           >
             <a
               className="small-movie-card__link"
-              href="/detailed/2"
+              href="/films/2"
               onClick={[Function]}
             >
               Test title 2

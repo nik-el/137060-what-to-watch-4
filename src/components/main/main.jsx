@@ -1,14 +1,12 @@
-import React from 'react';
-import {useSelector} from "react-redux";
+import React, {useEffect} from 'react';
+import {useSelector, useDispatch} from "react-redux";
 import {Feed} from '../feed/feed';
 import {UserBlock} from '../user-block/user-block';
 import {GenresList} from '../genres-list/genres-list';
 import {ShowMore} from '../show-more/show-more';
 import {
   getFilms,
-  getFilmsLoadingState,
-  getPromoId,
-  getPromoLoadingState
+  getPromoId
 } from "../../reducer/data/selectors";
 import {getUser} from "../../reducer/user/selectors";
 import {getFeedLimit} from "../../reducer/view/selectors";
@@ -16,26 +14,26 @@ import PropTypes from "prop-types";
 import {Logo} from "../logo/logo";
 import {FavoriteButton} from "../favorite-button/favorite-button";
 import {Link} from "react-router-dom";
+import {FilmPropTypes} from "../../types/film-prop-types";
+import {ActionCreator as ViewActionCreator} from "../../reducer/view";
 
 const DEFAULT_LIMIT = 8;
 
 export const Main = ({currentFilms}) => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(ViewActionCreator.setGenre(null));
+  }, []);
+
   const userData = useSelector(getUser);
   const promoId = useSelector(getPromoId) || 0;
 
-  const isFilmsLoading = useSelector(getFilmsLoadingState);
-  const isPromoLoading = useSelector(getPromoLoadingState);
   const films = useSelector(getFilms);
   const feedLimit = useSelector(getFeedLimit || DEFAULT_LIMIT);
 
   const promoItem = films.find((item) => item.id === promoId) || films[0];
   const canShowMore = feedLimit < currentFilms.length;
-
-  if (isFilmsLoading || isPromoLoading) {
-    return <div>Загружаемся...</div>;
-  } else if (!films.length) {
-    return <div>Нет данных для отображения</div>;
-  }
 
   return <>
     <section className="movie-card">
@@ -76,7 +74,11 @@ export const Main = ({currentFilms}) => {
             <div className="movie-card__buttons">
               <Link
                 to={`/player/${promoItem.id}`}
-                className="btn btn--play movie-card__button" type="button">
+                className="btn btn--play movie-card__button" type="button"
+                style={{
+                  WebkitAppearance: `none`
+                }}
+              >
                 <svg viewBox="0 0 19 19" width="19" height="19">
                   <use xlinkHref="#play-s"/>
                 </svg>
@@ -124,5 +126,5 @@ export const Main = ({currentFilms}) => {
 };
 
 Main.propTypes = {
-  currentFilms: PropTypes.arrayOf(PropTypes.object),
+  currentFilms: PropTypes.arrayOf(PropTypes.shape(FilmPropTypes)),
 };

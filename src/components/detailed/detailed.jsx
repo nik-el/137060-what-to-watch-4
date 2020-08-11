@@ -14,6 +14,7 @@ import {Logo} from "../logo/logo";
 import {FavoriteButton} from "../favorite-button/favorite-button";
 import {UserBlock} from "../user-block/user-block";
 import {getUser} from "../../reducer/user/selectors";
+import {FilmPropTypes} from "../../types/film-prop-types";
 
 const DETAILED_TABS = [`Overview`, `Details`, `Reviews`];
 
@@ -27,7 +28,7 @@ export const Detailed = React.memo(function Detailed({currentFilms}) {
 
   useEffect(() => {
     dispatch(ReviewOperation.loadComments(id));
-  }, []);
+  }, [id]);
 
   const filteredFilms = currentFilms.filter((item) => {
     if (item.id === id) {
@@ -191,7 +192,11 @@ export const Detailed = React.memo(function Detailed({currentFilms}) {
             <div className="movie-card__buttons">
               <Link
                 to={`/player/${id}`}
-                className="btn btn--play movie-card__button" type="button">
+                className="btn btn--play movie-card__button" type="button"
+                style={{
+                  WebkitAppearance: `none`
+                }}
+              >
                 <svg viewBox="0 0 19 19" width="19" height="19">
                   <use xlinkHref="#play-s"/>
                 </svg>
@@ -201,7 +206,7 @@ export const Detailed = React.memo(function Detailed({currentFilms}) {
                 id={id}
                 isFavorite={isFavorite}
               />
-              <Link className="btn movie-card__button" to={`/review/${id}`}>
+              <Link className="btn movie-card__button" to={`/films/${id}/review/`}>
                 Add review
               </Link>
             </div>
@@ -258,5 +263,5 @@ export const Detailed = React.memo(function Detailed({currentFilms}) {
 
 
 Detailed.propTypes = {
-  currentFilms: PropTypes.arrayOf(PropTypes.object),
+  currentFilms: PropTypes.arrayOf(PropTypes.shape(FilmPropTypes)),
 };

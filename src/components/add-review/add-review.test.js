@@ -16,8 +16,8 @@ it(`AddReview renders correctly`, () => {
   const tree = renderer
     .create(
         <Provider store={store}>
-          <MemoryRouter initialEntries={[`detailed/${currentTestFilmId}`]}>
-            <Route path={`detailed/:id`}>
+          <MemoryRouter initialEntries={[`films/${currentTestFilmId}`]}>
+            <Route path={`films/:id`}>
               <AddReview
                 currentFilms={testFilms}
               />

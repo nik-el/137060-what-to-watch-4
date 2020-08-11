@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {useParams} from "react-router-dom";
 import {geVideoDuration} from "../../utils/get-duration.utils";
 import history from './../../history';
+import {FilmPropTypes} from "../../types/film-prop-types";
 
 export const FullPlayer = React.memo(function FullPlayer({currentFilms}) {
   const videoEl = useRef(null);
@@ -112,5 +113,5 @@ export const FullPlayer = React.memo(function FullPlayer({currentFilms}) {
 });
 
 FullPlayer.propTypes = {
-  currentFilms: PropTypes.arrayOf(PropTypes.object),
+  currentFilms: PropTypes.arrayOf(PropTypes.shape(FilmPropTypes)),
 };
